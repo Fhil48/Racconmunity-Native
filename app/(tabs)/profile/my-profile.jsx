@@ -73,20 +73,19 @@ const MyProfile = () => {
           <FormField
             title="Contraseña actual"
             type="password"
-            handleChangeText={(e) => setForm({ ...form, email: e })}
+            handleChangeText={(e) => setForm({ ...form, currentPassword: e })}
             otherStyles="mt-7"
-            keboardType="email-address"
           />
           <FormField
             title="Nueva contraseña"
             type="password"
-            handleChangeText={(e) => setForm({ ...form, password: e })}
+            handleChangeText={(e) => setForm({ ...form, newPassword: e })}
             otherStyles="mt-7"
           />
           <FormField
-            title="Contraseña"
+            title="Confirmar nueva contraseña"
             type="password"
-            handleChangeText={(e) => setForm({ ...form, password: e })}
+            handleChangeText={(e) => setForm({ ...form, confirmPassword: e })}
             otherStyles="mt-7"
           />
           <CustomButton title="Actualizar" containerStyles="mt-7 " />
