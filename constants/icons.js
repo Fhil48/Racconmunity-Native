@@ -11,7 +11,14 @@ import logout from "../assets/icons/logout.png";
 import eyeHide from "../assets/icons/eye-hide.png";
 import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
+import wallet from "../assets/icons/wallet.png";
+import bag from "../assets/icons/bag.png";
+import notification from "../assets/icons/notification.png";
+import settings from "../assets/icons/settings.png";
 
+import pets from "../assets/icons/pets.png";
+import house from "../assets/icons/house.png";
+import food from "../assets/icons/food.png";
 export default {
   play,
   bookmark,
@@ -26,4 +33,11 @@ export default {
   logout,
   eyeHide,
   eye,
+  wallet,
+  bag,
+  notification,
+  settings,
+  pets,
+  house,
+  food,
 };

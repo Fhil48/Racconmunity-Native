@@ -5,6 +5,7 @@ import { icons } from "../constants";
 
 const FormField = ({
   title,
+  type,
   value,
   placeholder,
   handleChangeText,
@@ -24,11 +25,11 @@ const FormField = ({
           placeholder={placeholder}
           placeholderTextColor="#7B7B8B"
           onChangeText={handleChangeText}
-          secureTextEntry={title === "Password" && !showPassword}
+          secureTextEntry={type === "password" && !showPassword}
           {...props}
         />
 
-        {title === "Password" && (
+        {type === "password" && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Image
               source={!showPassword ? icons.eye : icons.eyeHide}
