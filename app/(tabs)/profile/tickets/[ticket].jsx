@@ -34,18 +34,13 @@ const Ticket = () => {
           <View className="w-full py-4 mb-auto rounded-[40px] mt-32 bg-[#D9D9D9] z-10">
             <View className="mt-20 ml-4">
               <Text className="text-2xl text-primary mb-4 font-pbold">
-              Paseo de Perros en el Parque Central
+              Paseo de perros en el Parque Central
               </Text>
             </View>
             <View className="mt-2 ml-4">
               <Text className="font-pmedium text-sm text-primary mb-4">
-                ¡Dale a tu perro la atención y el ejercicio que necesita con
-                nuestros paseos diarios en el hermoso Parque Central! Nuestros
-                paseadores de perros experimentados y apasionados se asegurarán
-                de que tu mascota disfrute de un paseo divertido y seguro. Este
-                servicio es perfecto para dueños de mascotas ocupados que
-                quieren garantizar que su perro se mantenga activo y feliz.
-              </Text>
+              ¡Hola, vecinos!
+              ¿Necesitan ayuda para que sus adorables mascotas se mantengan activas y felices? Estoy ofreciendo un servicio de paseo de mascotas para asegurarme de que sus compañeros peludos reciban el ejercicio y el cuidado que necesitan. Ofrezco paseos diarios de 30 minutos a una hora, según las necesidades de su mascota, con atención personalizada, cuidado y seguridad. Al final de cada paseo, recibirán un pequeño informe con fotos y detalles sobre cómo fue el paseo. Amo a los animales y disfruto pasar tiempo con ellos, soy confiable y responsable, y ofrezco horarios flexibles para adaptarme a sus necesidades. Si están interesados en darle a su mascota un paseo divertido y saludable, no duden en contactarme. Estoy aquí para ayudar a que sus amigos de cuatro patas vivan felices y activos. ¡Espero conocer a sus maravillosas mascotas pronto!</Text>
             </View>
             <CustomButton title="Cancelar" containerStyles="mt-7 mx-8" />
           </View>

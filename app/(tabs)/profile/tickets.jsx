@@ -15,9 +15,9 @@ const Tickets = () => {
           handlePress={() => router.push("/profile")}
         />
         <View className=" space-y-2">
-          <TicketButton title="Paseo de mascota" type="pets" ticket="walk" />
-          <TicketButton title="Capacitación hogar" type="house" />
-          <TicketButton title="Almuerzo" type="food" />
+          <TicketButton title="Paseo de mascotas" type="pets" ticket="walk" />
+          <TicketButton title="Filtración de agua" type="house" />
+          <TicketButton title="Almuerzos caseros" type="food" />
         </View>
       </ScrollView>
     </SafeAreaView>
