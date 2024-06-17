@@ -52,9 +52,9 @@ const Home = () => {
             <Text className="text-white text-2xl font-pbold">
               Tablón de anuncios
             </Text>
-            <TicketButton title="Pet walk today" type="pets" ticket="walk" />
-            <TicketButton title="water leak floor 4" type="house" />
-            <TicketButton title="homemade lunch" type="food" />
+            <TicketButton title="Paseo de mascotas" type="pets" ticket="walk" />
+            <TicketButton title="Filtración de agua" type="house" />
+            <TicketButton title="Almuerzos caseros" type="food" />
           </View>
         </View>
       </ScrollView>

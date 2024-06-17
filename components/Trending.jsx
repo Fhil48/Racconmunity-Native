@@ -51,10 +51,9 @@ const TrendingItem = ({ activeItem, item }) => {
             </Text>
             <Text className="text-white text-sm font-pbold ">Se parte de</Text>
             <Text className="text-white text-sm font-pbold ">
-              nuestro grupo
+              nuestra comunidad
             </Text>
           </View>
-
           <TouchableOpacity className="border-2 border-white rounded-lg mt-4 ml-4 w-40 flex flex-row items-center py-2 px-4">
             <Text className="text-white text-sm font-pbold ">Acompañanos</Text>
             <Image source={icons.rightArrow} className="ml-2" />
