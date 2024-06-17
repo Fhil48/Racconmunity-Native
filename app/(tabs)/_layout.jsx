@@ -52,6 +52,21 @@ const TabsLayout = () => {
            }}
         />
         <Tabs.Screen
+          name="calendar"
+          options={{ 
+            title: 'Calendar',
+            headerShown: false,
+            tabBarIcon:({ color, focused }) => (
+              <TabIcon
+                icon={icons.calendar}
+                color={color}
+                name="Calendario"
+                focused={focused}
+              />
+            )
+           }}
+        />
+        <Tabs.Screen
           name="profile"
           options={{ 
             title: 'Perfil',
