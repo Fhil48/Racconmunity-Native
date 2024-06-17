@@ -15,7 +15,7 @@ const SignIn = () => {
     try {
       setTimeout(() => {
         router.replace('/home');
-        Alert.alert('Bienvenido', 'Tienes 0 notificaciones nuevas')
+        Alert.alert('Bienvenido!', 'Tienes 0 notificaciones nuevas')
         setIsLoading(false)
       }, 1000);
       

@@ -33,65 +33,63 @@ const MyProfile = () => {
 
   return (
     <SafeAreaView className="bg-primary h-full">
-      <ScrollView className="px-4 my-6">
+      <ScrollView className="px-4 my-0">
         <ReturnButton
-          title="My tickets"
+          title="Mi Perfil"
           handlePress={() => router.push("/profile")}
         />
 
-        <Text className="text-2xl text-white font-psemibold">My profile</Text>
-
         <View className="mt-7 space-y-2">
           <Text className="text-base text-gray-100 font-pmedium">
-            Update profile Image
+            Modifica tu foto de perfil
           </Text>
           <TouchableOpacity onPress={() => openPicker()}>
             {form.thumbnail ? (
               <Image
                 source={{ uri: form.thumbnail.uri }}
-                resizeMode="cover"
-                className="w-full h-64 rounded-2xl"
+                resizeMode="fill"
+                className="w-full h-[250px] rounded-2xl"
               />
             ) : (
               <View className="w-full h-16 px-4 bg-black-100 rounded-2xl justify-center items-center border-2 border-black-200 flex-row space-x-2">
                 <Image
                   source={icons.upload}
-                  resizeMode="contain"
+                  resizeMode="center"
                   className="w-5 h-5 mx-2"
                 />
                 <Text className="text-sm text-gray-100 font-pmedium">
-                  Choose a file
+                  Selecciona un archivo
                 </Text>
               </View>
             )}
           </TouchableOpacity>
         </View>
 
-        <View className="w-full justify-center min-h-[85vh] mt-9">
+        <View className="w-full justify-center mt-[40px]">
           <Text className="text-2xl text-white font-psemibold">
-            Change Password
+            Cambio de contraseña
           </Text>
 
           <FormField
-            title="current password"
+            title="Contraseña actual"
             type="password"
             handleChangeText={(e) => setForm({ ...form, email: e })}
             otherStyles="mt-7"
             keboardType="email-address"
           />
           <FormField
-            title="new Password"
+            title="Nueva contraseña"
             type="password"
             handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
           />
           <FormField
-            title="Password"
+            title="Contraseña"
             type="password"
             handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
           />
-          <CustomButton title="Update profile" containerStyles="mt-7 " />
+          <CustomButton title="Actualizar" containerStyles="mt-7 " />
         </View>
       </ScrollView>
     </SafeAreaView>

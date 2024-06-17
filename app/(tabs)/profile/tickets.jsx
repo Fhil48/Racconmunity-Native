@@ -11,13 +11,13 @@ const Tickets = () => {
     <SafeAreaView className="bg-primary h-full ">
       <ScrollView className="px-4 my-6 ">
         <ReturnButton
-          title="My tickets"
+          title="Mis tickets"
           handlePress={() => router.push("/profile")}
         />
         <View className=" space-y-2">
-          <TicketButton title="Pet walk today" type="pets" ticket="walk" />
-          <TicketButton title="water leak floor 4" type="house" />
-          <TicketButton title="homemade lunch" type="food" />
+          <TicketButton title="Paseo de mascota" type="pets" ticket="walk" />
+          <TicketButton title="Capacitación hogar" type="house" />
+          <TicketButton title="Almuerzo" type="food" />
         </View>
       </ScrollView>
     </SafeAreaView>
