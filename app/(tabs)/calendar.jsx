@@ -136,7 +136,7 @@ const Calendar = () => {
                   {
                     !isLoading ? (info && <>
                         <Text className="text-2xl font-pbold text-[#FFF]">{info.title}</Text>
-                        <Text className="text-[#FFF]">Lugar: {info.place}</Text>
+                        <Text className="text-[#FFF]">Lugar: {info.place} </Text>
                         <Text className="text-[#FFF]">Organiza: {info.user}</Text>
                         <Text className="mt-8 text-[#FFF]">{info.description}</Text>
                     </> ) : <Loader isLoading={isLoading}/>
