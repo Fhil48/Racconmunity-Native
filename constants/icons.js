@@ -15,7 +15,7 @@ import wallet from "../assets/icons/wallet.png";
 import bag from "../assets/icons/bag.png";
 import notification from "../assets/icons/notification.png";
 import settings from "../assets/icons/settings.png";
-
+import calendar from "../assets/icons/calendar.png";
 import pets from "../assets/icons/pets.png";
 import house from "../assets/icons/house.png";
 import food from "../assets/icons/food.png";
@@ -40,4 +40,5 @@ export default {
   pets,
   house,
   food,
+  calendar,
 };
