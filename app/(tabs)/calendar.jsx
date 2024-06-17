@@ -66,7 +66,7 @@ const Calendar = () => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-          <View style={styles.container} className="bg-primary">
+          <View style={styles.container} className="bg-primary mt-4">
             <View style={styles.header}>
               <Text style={styles.title}>Tu calendario</Text>
             </View>

@@ -33,14 +33,14 @@ const TabsLayout = () => {
             borderTopWidth: 1,
             borderTopColor: '#232533',
             height: 68
-          }
+          },
+          headerShown: false,
          }}
       >
         <Tabs.Screen
           name="home"
           options={{ 
             title: 'Inicio',
-            headerShown: false,
             tabBarIcon:({ color, focused }) => (
               <TabIcon
                 icon={icons.home}
@@ -55,7 +55,6 @@ const TabsLayout = () => {
           name="calendar"
           options={{ 
             title: 'Calendar',
-            headerShown: false,
             tabBarIcon:({ color, focused }) => (
               <TabIcon
                 icon={icons.calendar}
@@ -70,7 +69,6 @@ const TabsLayout = () => {
           name="profile"
           options={{ 
             title: 'Perfil',
-            headerShown: false,
             tabBarIcon:({ color, focused }) => (
               <TabIcon
                 icon={icons.profile}
