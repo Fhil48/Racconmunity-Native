@@ -7,19 +7,20 @@ const Loader = ({ isLoading }) => {
   if (!isLoading) return null;
 
   return (
-    <View
-      className="absolute flex justify-center items-center w-full h-full bg-primary/60 z-10"
-      style={{
-        height: screenHeight,
-      }}
-    >
+    
       <ActivityIndicator
         animating={isLoading}
         color="#fff"
-        size={osName === "ios" ? "large" : 50}
+        size='small'
       />
-    </View>
   );
 };
 
 export default Loader;
+
+{/*<View
+      className="absolute flex justify-center items-center w-full h-full bg-primary/60 z-10"
+      style={{
+        height: screenHeight,
+      }}
+    ></View> */}
