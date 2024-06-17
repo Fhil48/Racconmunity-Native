@@ -42,7 +42,7 @@ const Ticket = () => {
               ¡Hola, vecinos!
               ¿Necesitan ayuda para que sus adorables mascotas se mantengan activas y felices? Estoy ofreciendo un servicio de paseo de mascotas para asegurarme de que sus compañeros peludos reciban el ejercicio y el cuidado que necesitan. Ofrezco paseos diarios de 30 minutos a una hora, según las necesidades de su mascota, con atención personalizada, cuidado y seguridad. Al final de cada paseo, recibirán un pequeño informe con fotos y detalles sobre cómo fue el paseo. Amo a los animales y disfruto pasar tiempo con ellos, soy confiable y responsable, y ofrezco horarios flexibles para adaptarme a sus necesidades. Si están interesados en darle a su mascota un paseo divertido y saludable, no duden en contactarme. Estoy aquí para ayudar a que sus amigos de cuatro patas vivan felices y activos. ¡Espero conocer a sus maravillosas mascotas pronto!</Text>
             </View>
-            <CustomButton title="Cancelar" containerStyles="mt-7 mx-8" />
+            <CustomButton title="Cancelar" handlePress={() => router.push("/profile/tickets")} containerStyles="mt-7 mx-8" />
           </View>
         </View>
       </ScrollView>
