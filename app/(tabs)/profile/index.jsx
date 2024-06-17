@@ -85,6 +85,12 @@ const Profile = () => {
               icon={icons.notification}
               handlePress={() => router.push("profile/notifications")}
             />
+            <ProfileButton
+              title="Configuración"
+              containerStyles="mt-6"
+              icon={icons.settings}
+              handlePress={() => router.push("profile/")}
+            />
           </View>
           <View className="px-2 w-full">
             <CustomButton title="Salir" handlePress={()=> router.push("/")}/>
