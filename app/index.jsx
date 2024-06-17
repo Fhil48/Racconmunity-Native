@@ -17,7 +17,7 @@ const App = () => {
           />
           <Image
             source={images.cards_dos}
-            className="max-w-[380px] w-full h-[300px]"
+            className="max-w-[340px] w-full h-[350px]"
             resizeMode='contain'
           />
           <View className="relative mt-5">
@@ -27,17 +27,17 @@ const App = () => {
             </Text>
             <Image 
               source={images.path}
-              className="w-[136px] h-[15px] absolute -bottom-2 -right-8"
+              className="w-[136px] h-[15px] absolute -bottom-3 right-6"
               resizeMode='contain'
             />
             </View>
-            <Text className="text-sm font-pregular text-gray-100 mt-7 px-2">
+            <Text className="text-sm font-pregular text-gray-100 mt-8 px-2">
               Donde la individualidad se encuentra con la conexión
             </Text>
             <CustomButton
               title="Ingresar"
               handlePress={() => router.push('/sign-in')}
-              containerStyles="w-full mt-7"
+              containerStyles="w-full mt-10"
             />
         </View>
         <StatusBar 

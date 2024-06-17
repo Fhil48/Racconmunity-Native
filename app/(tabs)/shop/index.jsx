@@ -26,6 +26,41 @@ const data = [
     precio: "60000",
     descripcion: "una bicicleta",
   },
+  {
+    $id: 3,
+    title: "Bicicleta",
+    caracteristicas: "marca y modelo",
+    precio: "60000",
+    descripcion: "una bicicleta",
+  },
+  {
+    $id: 4,
+    title: "Bicicleta",
+    caracteristicas: "marca y modelo",
+    precio: "60000",
+    descripcion: "una bicicleta",
+  },
+  {
+    $id: 5,
+    title: "Bicicleta",
+    caracteristicas: "marca y modelo",
+    precio: "60000",
+    descripcion: "una bicicleta",
+  },
+  {
+    $id: 6,
+    title: "Bicicleta",
+    caracteristicas: "marca y modelo",
+    precio: "60000",
+    descripcion: "una bicicleta",
+  },
+  {
+    $id: 7,
+    title: "Bicicleta",
+    caracteristicas: "marca y modelo",
+    precio: "60000",
+    descripcion: "una bicicleta",
+  },
 ];
 
 const ShopItem = ({ thumbnail, price, title }) => {
@@ -34,7 +69,7 @@ const ShopItem = ({ thumbnail, price, title }) => {
       onPress={() => {
         router.push(`shop/itemShop`);
       }}
-      className="w-36 h-50 border-2 m-2 border-white rounded-lg "
+      className="w-1/2 h-50 border-2 p-2 border-white rounded-lg "
     >
       <Image
         className="w-full h-[120px] rounded-lg rounded-b-none"
@@ -52,43 +87,15 @@ const shop = () => {
     <SafeAreaView className="bg-primary h-full">
       <ScrollView className="px-4 py-6">
         <Text className="text-white text-2xl font-pbold">Tienda</Text>
-        <View className="flex-1 flex-row flex-wrap">
-          <ShopItem
-            thumbnail={images.bicicleta}
-            price={data[0].precio}
-            title={data[0].title}
-          />
-          <ShopItem
-            thumbnail={images.bicicleta}
-            price={data[0].precio}
-            title={data[0].title}
-          />
-          <ShopItem
-            thumbnail={images.bicicleta}
-            price={data[0].precio}
-            title={data[0].title}
-          />
-          <ShopItem
-            thumbnail={images.bicicleta}
-            price={data[0].precio}
-            title={data[0].title}
-          />
-          <ShopItem
-            thumbnail={images.bicicleta}
-            price={data[0].precio}
-            title={data[0].title}
-          />
-          <ShopItem
-            thumbnail={images.bicicleta}
-            price={data[0].precio}
-            title={data[0].title}
-          />
-
-          <ShopItem
-            thumbnail={images.bicicleta}
-            price={data[0].precio}
-            title={data[0].title}
-          />
+        <View className="flex flex-wrap flex-row">
+          {data.map((item, i) => (
+            <ShopItem
+              thumbnail={images.bicicleta}
+              price={item.precio}
+              title={item.title}
+              key={i}
+            />
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

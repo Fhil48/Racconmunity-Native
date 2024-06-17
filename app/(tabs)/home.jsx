@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { icons, images } from "../../constants";
 import Trending from "../../components/Trending";
 import TicketButton from "../../components/profile/TicketButton";
+import { router } from "expo-router";
 
 const events = [
   { $id: 0, title: "Eventos del dia", thumbnail: images.day_event },
@@ -15,20 +16,19 @@ const Home = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView className="px-4 py-6">
-        <View className="w-full h-16  flex flex-row  items-center ">
+        <View className="w-full h-16  flex flex-row  items-center justify-between">
           <Image
             source={images.logo_png}
             resizeMode="cover"
-            className="w-[250px] h-[42px]"
+            className="w-[250px] h-[42px] -left-2"
           />
-
-          <View>
+          <TouchableOpacity onPress={()=> router.push('/profile')}>
             <Image
               className=" ml-5 rounded-full w-[50] h-[50]"
               resizeMode="cover"
               source={images.hasbu}
             />
-          </View>
+          </TouchableOpacity>
         </View>
         <View>
           <Trending posts={events} />
@@ -48,7 +48,7 @@ const Home = () => {
           </TouchableOpacity>
         </View>
         <View>
-          <View className="mt-6 space-y-2">
+          <View className="my-6">
             <Text className="text-white text-2xl font-pbold">
               Tablón de anuncios
             </Text>

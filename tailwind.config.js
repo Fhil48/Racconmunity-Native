@@ -18,6 +18,13 @@ module.exports = {
         gray: {
           100: "#CDCDE0",
         },
+        opacity: {
+        '10': '0.1',
+        '20': '0.2',
+        '50': '0.5',
+        '75': '0.75',
+        '90': '0.9',
+      },
       },
       fontFamily: {
         pthin: ["Poppins-Thin", "sans-serif"],
