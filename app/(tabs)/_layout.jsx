@@ -71,6 +71,20 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
+          name="shop"
+          options={{
+            title: "Shop",
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.bag}
+                color={color}
+                name="Tienda"
+                focused={focused}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
           name="profile"
           options={{
             title: "Perfil",

@@ -22,7 +22,12 @@ const ProfileButton = ({
       }`}
       disabled={isLoading}
     >
-      <Image source={icon} resizeMode="contain" className="w-7 h-7 mx-4" tintColor="#FFF" />
+      <Image
+        source={icon}
+        resizeMode="contain"
+        className="w-7 h-7 mx-4"
+        tintColor="#FFF"
+      />
       <Text className={`text-white font-psemibold text-lg ${textStyles}`}>
         {title}
       </Text>
@@ -93,7 +98,7 @@ const Profile = () => {
             />
           </View>
           <View className="px-2 w-full">
-            <CustomButton title="Salir" handlePress={()=> router.push("/")}/>
+            <CustomButton title="Salir" handlePress={() => router.push("/")} />
           </View>
         </View>
       </ScrollView>

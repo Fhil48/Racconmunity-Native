@@ -12,6 +12,7 @@ import logo_png from "../assets/images/logo_png.png";
 import day_event from "../assets/images/day_event.png";
 import weekly_event from "../assets/images/weekly_event.png";
 import monthly_event from "../assets/images/monthly_event.png";
+import bicicleta from "../assets/images/bicicleta.png";
 
 export default {
   profile,
@@ -28,4 +29,5 @@ export default {
   day_event,
   weekly_event,
   monthly_event,
+  bicicleta,
 };
