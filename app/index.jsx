@@ -22,7 +22,7 @@ const App = () => {
           />
           <View className="relative mt-5">
             <Text className="text-2xl text-white font-bold text-center">
-              Sientete seguro con{' '}
+              Conoce a tus vecinos con{' '}
               <Text className="text-secondary-200">Raccoonmunity</Text>
             </Text>
             <Image 
