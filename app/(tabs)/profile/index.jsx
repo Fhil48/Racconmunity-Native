@@ -17,13 +17,13 @@ const ProfileButton = ({
     <TouchableOpacity
       onPress={handlePress}
       activeOpacity={0.7}
-      className={`bg-secondary rounded-xl min-h-[62px] flex flex-row  items-center ${containerStyles} ${
+      className={`rounded-xl border-secondary-200 border-[1px] min-h-[62px] flex flex-row align-middle items-center ${containerStyles} ${
         isLoading ? "opacity-50" : ""
       }`}
       disabled={isLoading}
     >
-      <Image source={icon} resizeMode="contain" className="w-7 h-7 mx-4" />
-      <Text className={`text-primary font-psemibold text-lg ${textStyles}`}>
+      <Image source={icon} resizeMode="contain" className="w-7 h-7 mx-4" tintColor="#FFF" />
+      <Text className={`text-white font-psemibold text-lg ${textStyles}`}>
         {title}
       </Text>
 
@@ -48,14 +48,16 @@ const Profile = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
-        <View className="w-full h-full  mt-7 items-center ">
-          <View className="  items-center">
-            {/*<Text className="text-white text-2xl font-psemibold">Perfil</Text> */}
+        <View className="w-full h-full mt-7 items-center">
+          <View className="flex-row items-start gap-2 px-4">
             <Image
-              className="mt-6 rounded-full w-[150] h-[150]  "
+              className="rounded-lg w-[120px] h-[120px]"
               resizeMode="cover"
               source={images.hasbu}
             />
+            {/*<View>
+              <Text className="text-white text-sm font-psemibold">Hasbula Nurmagomedov</Text> 
+            </View> */}
           </View>
 
           <View className="w-full justify-center mt-6 mb-12 px-4 ">
@@ -83,9 +85,15 @@ const Profile = () => {
               icon={icons.notification}
               handlePress={() => router.push("profile/notifications")}
             />
+            <ProfileButton
+              title="Configuración"
+              containerStyles="mt-6"
+              icon={icons.settings}
+              handlePress={() => router.push("profile/")}
+            />
           </View>
           <View className="px-2 w-full">
-            <CustomButton title="Salir" />
+            <CustomButton title="Salir" handlePress={()=> router.push("/")}/>
           </View>
         </View>
       </ScrollView>

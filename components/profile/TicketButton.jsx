@@ -9,7 +9,7 @@ import {
 import { icons } from "../../constants";
 
 const colorBackground = {
-  pets: "bg-[#91ff7f]",
+  pets: "bg-[#21bc00]",
   house: "bg-[#4e41dc]",
   food: "bg-[#eb643a]",
 };
@@ -34,7 +34,7 @@ const TicketButton = ({ title, type, isLoading, ticket }) => {
       <View className="bg-white p-2 rounded-3xl mr-4">
         <Image source={icons[type]} className="w-10 h-10" />
       </View>
-      <Text className={`text-primary font-psemibold text-lg`}>{title}</Text>
+      <Text className={`text-white font-psemibold text-lg`}>{title}</Text>
       {isLoading && (
         <ActivityIndicator
           animating={isLoading}
