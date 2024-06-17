@@ -14,7 +14,9 @@ const TabIcon = ({ icon, color, name, focused }) => {
         className="w-6 h-6"
       />
       <Text
-        className={`${focused ? "font-psemibold" : "font-pregular"} text-xs color-gray-100`}
+        className={`${
+          focused ? "font-psemibold" : "font-pregular"
+        } text-xs color-gray-100`}
         style={{ color: color }}
       >
         {name}
@@ -32,18 +34,18 @@ const TabsLayout = () => {
           tabBarActiveTintColor: "#FFA001",
           tabBarInactiveTintColor: "#CDCDE0",
           tabBarStyle: {
-            backgroundColor: "#161623",
-            borderTopWidth: 2,
-            borderTopColor: "#232534",
-            height: 69,
+            backgroundColor: "#161622",
+            borderTopWidth: 1,
+            borderTopColor: "#232533",
+            height: 68,
           },
+          headerShown: false,
         }}
       >
         <Tabs.Screen
           name="home"
           options={{
             title: "Inicio",
-            headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
                 icon={icons.home}
@@ -51,15 +53,14 @@ const TabsLayout = () => {
                 name="Inicio"
                 focused={focused}
               />
-            )
-           }}
+            ),
+          }}
         />
         <Tabs.Screen
           name="calendar"
-          options={{ 
-            title: 'Calendar',
-            headerShown: false,
-            tabBarIcon:({ color, focused }) => (
+          options={{
+            title: "Calendar",
+            tabBarIcon: ({ color, focused }) => (
               <TabIcon
                 icon={icons.calendar}
                 color={color}
@@ -73,7 +74,6 @@ const TabsLayout = () => {
           name="profile"
           options={{
             title: "Perfil",
-            headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
                 icon={icons.profile}
