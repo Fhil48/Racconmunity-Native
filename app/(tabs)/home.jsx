@@ -57,6 +57,10 @@ const Home = () => {
             <TicketButton title="Almuerzos caseros" type="food" />
           </View>
         </View>
+        <View>
+          <View className="mt-6 space-y-2">
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
