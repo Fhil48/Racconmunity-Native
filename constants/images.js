@@ -7,5 +7,6 @@ import cards_dos from "../assets/images/Group1.png";
 import logo_home from "../assets/images/logo_home.png";
 import logoSmall from "../assets/images/logo-small.png";
 import empty from "../assets/images/empty.png";
+import hasbu from "../assets/images/hasbu.jpg";
 
-export default { profile, thumbnail, cards, path, logo, logo_home, cards_dos, logoSmall, empty };
+export default { profile, thumbnail, cards, path, logo, logo_home, cards_dos, logoSmall, empty, hasbu };

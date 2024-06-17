@@ -1,7 +1,7 @@
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { icons } from "../../../constants";
+import { icons, images } from "../../../constants";
 import { router } from "expo-router";
 import CustomButton from "../../../components/CustomButton";
 
@@ -50,42 +50,42 @@ const Profile = () => {
       <ScrollView>
         <View className="w-full h-full  mt-7 items-center ">
           <View className="  items-center">
-            <Text className="text-white text-2xl font-psemibold">Profile</Text>
+            {/*<Text className="text-white text-2xl font-psemibold">Perfil</Text> */}
             <Image
-              source={icons.profile}
-              className="mt-6 rounded-full w-20 h-20  "
-              resizeMode="contain"
+              className="mt-6 rounded-full w-[150] h-[150]  "
+              resizeMode="cover"
+              source={images.hasbu}
             />
           </View>
 
           <View className="w-full justify-center mt-6 mb-12 px-4 ">
             <ProfileButton
-              title="My profile"
+              title="Mi perfil"
               containerStyles="mt-6"
               icon={icons.profile}
               handlePress={() => router.push("profile/my-profile")}
             />
             <ProfileButton
-              title="tickets"
+              title="Tickets"
               containerStyles="mt-6"
               icon={icons.wallet}
               handlePress={() => router.push("profile/tickets")}
             />
             <ProfileButton
-              title="Products"
+              title="Productos"
               containerStyles="mt-6"
               icon={icons.bag}
               handlePress={() => router.push("profile/products")}
             />
             <ProfileButton
-              title="Notifications"
+              title="Notificaciones"
               containerStyles="mt-6"
               icon={icons.notification}
               handlePress={() => router.push("profile/notifications")}
             />
           </View>
           <View className="px-2 w-full">
-            <CustomButton title="Logout" />
+            <CustomButton title="Salir" />
           </View>
         </View>
       </ScrollView>
