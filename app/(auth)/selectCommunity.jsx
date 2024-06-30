@@ -14,6 +14,9 @@ const SelectCommunity = () => {
 
     useEffect(() => { if(value === '1') setCode('') }, [value]);
     
+    const handleChange = (value) => {
+        setCode(value);
+      };
 
     const handleCrearComunidad = async () => {
         try {
@@ -29,7 +32,7 @@ const SelectCommunity = () => {
     const handleSelectCommunity = async () => {
         try {
             setLoading(true)
-            await selectCommunity('DPeTXv');
+            await selectCommunity(code);
             router.replace('/home')
         } catch (error) {
             Alert.alert('Error', error.message);
@@ -75,8 +78,8 @@ const SelectCommunity = () => {
                         <Text className="text-white ml-2">Ingresa el código de la comunidad</Text>
                         <FormField
                             title="Código"
-                            // value={code}
-                            // handleChangeText={(value) => setCode('DPeTXv')}
+                            value={code}
+                            handleChangeText={handleChange}
                             otherStyles="mt-10"
                         ></FormField>
                         </View>
