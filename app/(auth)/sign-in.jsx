@@ -5,7 +5,7 @@ import FormField from '../../components/FormField'
 import { useState } from 'react'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-import { getAccount, signIn } from '../../lib/appwrite'
+import { getAccount, getCurrentUser, signIn } from '../../lib/appwrite'
 
 const SignIn = () => {
   const [form, setForm] = useState({email:'', pass:''});
@@ -16,7 +16,7 @@ const SignIn = () => {
     try {
       if(!form.pass || !form.email) Alert.alert('Error', 'Completa todos los campos')
         await signIn(form.email, form.pass);
-        const resp = await getAccount();
+        const resp = await getCurrentUser();
         console.log('resp', resp?.community);
         if (!resp.community) {
           router.replace('/selectCommunity');
