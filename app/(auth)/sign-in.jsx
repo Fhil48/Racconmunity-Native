@@ -5,7 +5,7 @@ import FormField from '../../components/FormField'
 import { useState } from 'react'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-import { signIn } from '../../lib/appwrite'
+import { getAccount, signIn } from '../../lib/appwrite'
 
 const SignIn = () => {
   const [form, setForm] = useState({email:'', pass:''});
@@ -16,7 +16,14 @@ const SignIn = () => {
     try {
       if(!form.pass || !form.email) Alert.alert('Error', 'Completa todos los campos')
         await signIn(form.email, form.pass);
-        router.replace('/home')
+        const resp = await getAccount();
+        console.log('resp', resp?.community);
+        if (!resp.community) {
+          router.replace('/selectCommunity');
+        } else {
+          router.replace('/home');
+        }
+
     } catch (error) {
       Alert.alert('Error', error.message)
     } finally{
@@ -53,7 +60,12 @@ const SignIn = () => {
             <Text className="text-sm text-gray-100 font-pregular">
               No tienes una cuenta?
             </Text>
-            <Link className='text-md font-psemibold text-secondary-100' href='/sign-up-auth'>Registrate aquí</Link>
+            <Link className='text-md font-psemibold text-secondary-100' href='/sign-up-auth'>Registrate aquí</Link> 
+            {/*
+              */}
+            {/*
+              <Link className='text-md font-psemibold text-secondary-100' href='/selectCommunity'>TEST</Link>
+               */}
           </View>
         </View>
       </ScrollView>
