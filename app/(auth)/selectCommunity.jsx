@@ -29,7 +29,7 @@ const SelectCommunity = () => {
     const handleSelectCommunity = async () => {
         try {
             setLoading(true)
-            await selectCommunity(code);
+            await selectCommunity('DPeTXv');
             router.replace('/home')
         } catch (error) {
             Alert.alert('Error', error.message);
@@ -75,8 +75,8 @@ const SelectCommunity = () => {
                         <Text className="text-white ml-2">Ingresa el código de la comunidad</Text>
                         <FormField
                             title="Código"
-                            value={code}
-                            handleChangeText={(e, value) => setCode(value)}
+                            // value={code}
+                            // handleChangeText={(value) => setCode('DPeTXv')}
                             otherStyles="mt-10"
                         ></FormField>
                         </View>

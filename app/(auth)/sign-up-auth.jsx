@@ -5,7 +5,7 @@ import FormField from '../../components/FormField'
 import { useState } from 'react'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-import { createUserAuth } from '../../lib/appwrite'
+import { createUserAuth, getAccount } from '../../lib/appwrite'
 
 const Signup = () => {
   const [form, setForm] = useState({username:'',email:'', pass:''});
@@ -16,7 +16,14 @@ const Signup = () => {
     try {
       if(!form.username || !form.pass || !form.email) Alert.alert('Error', 'Completa todos los campos')
       await createUserAuth(form);
-      router.replace('/home')
+      const resp = await getAccount();
+      console.log('resp', resp?.community);
+      if (!resp.community) {
+        router.replace('/selectCommunity');
+      } else {
+        router.replace('/home');
+      }
+
     } catch (error) {
       Alert.alert('Error', error.message)
     } finally{
