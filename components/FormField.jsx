@@ -25,11 +25,11 @@ const FormField = ({
           placeholder={placeholder}
           placeholderTextColor="#7B7B8B"
           onChangeText={handleChangeText}
-          secureTextEntry={title === "Contraseña" && !showPassword}
+          secureTextEntry={type === "password" && !showPassword}
           {...props}
         />
 
-        {title === "Contraseña" || type === "password" && (
+        {type === "password" && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Image
               source={!showPassword ? icons.eye : icons.eyeHide}

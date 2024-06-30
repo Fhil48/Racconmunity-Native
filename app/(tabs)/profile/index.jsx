@@ -4,52 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { icons, images } from "../../../constants";
 import { router } from "expo-router";
 import CustomButton from "../../../components/CustomButton";
-
-const ProfileButton = ({
-  title,
-  handlePress,
-  containerStyles,
-  textStyles,
-  isLoading,
-  icon,
-}) => {
-  return (
-    <TouchableOpacity
-      onPress={handlePress}
-      activeOpacity={0.7}
-      className={`rounded-xl border-secondary-200 border-[1px] min-h-[62px] flex flex-row align-middle items-center ${containerStyles} ${
-        isLoading ? "opacity-50" : ""
-      }`}
-      disabled={isLoading}
-    >
-      <Image
-        source={icon}
-        resizeMode="contain"
-        className="w-7 h-7 mx-4"
-        tintColor="#FFF"
-      />
-      <Text className={`text-white font-psemibold text-lg ${textStyles}`}>
-        {title}
-      </Text>
-
-      <Image
-        source={icons.rightArrow}
-        resizeMode="contain"
-        className="w-5 h-5 mr-4 ml-auto"
-      />
-      {isLoading && (
-        <ActivityIndicator
-          animating={isLoading}
-          color="#fff"
-          size="small"
-          className="ml-2"
-        />
-      )}
-    </TouchableOpacity>
-  );
-};
+import ProfileButton from "../../../components/profile/ProfileButton";
+import { useGlobalContext } from "../../../context/GlobalProvider";
 
 const Profile = () => {
+  const { user } = useGlobalContext();
+
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
@@ -67,10 +27,10 @@ const Profile = () => {
 
           <View className="w-full justify-center mt-6 mb-12 px-4 ">
             <ProfileButton
-              title="Mi perfil"
+              title="Usuarios"
               containerStyles="mt-6"
               icon={icons.profile}
-              handlePress={() => router.push("profile/my-profile")}
+              handlePress={() => router.push("profile/users")}
             />
             <ProfileButton
               title="Tickets"
@@ -94,7 +54,7 @@ const Profile = () => {
               title="Configuración"
               containerStyles="mt-6"
               icon={icons.settings}
-              handlePress={() => router.push("profile/")}
+              handlePress={() => router.push("profile/configuration")}
             />
           </View>
           <View className="px-2 w-full">

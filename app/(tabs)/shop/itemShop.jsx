@@ -21,10 +21,11 @@ const ItemShop = () => {
             />
           </View>
           <View className="w-full py-4 mb-auto  rounded-[40px] rounded-b-none mt-32 bg-[#D9D9D9] z-10">
-            <View className="mt-2 ml-4">
-              <Text className="text-2xl text-primary mb-4 font-pbold">
+            <View className="mt-2 ml-4 mb-4">
+              <Text className="text-2xl text-primary font-pbold">
                 Bicicleta
               </Text>
+              <Text className="">Autor Name LastName</Text>
             </View>
             <View className="mt-2 ml-4">
               <Text className="font-pmedium text-sm text-primary mb-4">

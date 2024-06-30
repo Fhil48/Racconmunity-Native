@@ -8,10 +8,11 @@ const ProfileLayout = () => {
     <>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="my-profile" options={{ headerShown: false }} />
+        <Stack.Screen name="users" options={{ headerShown: false }} />
         <Stack.Screen name="tickets" options={{ headerShown: false }} />
         <Stack.Screen name="products" options={{ headerShown: false }} />
         <Stack.Screen name="notifications" options={{ headerShown: false }} />
+        <Stack.Screen name="configuration" options={{ headerShown: false }} />
         <Stack.Screen
           name="tickets/[ticket]"
           options={{ headerShown: false }}

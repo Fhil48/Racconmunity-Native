@@ -98,8 +98,7 @@ const shop = () => {
           ))}
         </View>
         <View>
-          <View className="mt-6 space-y-2">
-          </View>
+          <View className="mt-6 space-y-2"></View>
         </View>
       </ScrollView>
     </SafeAreaView>

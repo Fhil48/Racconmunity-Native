@@ -4,7 +4,7 @@ import { icons } from "../../constants";
 const ReturnButton = ({ title, handlePress }) => {
   return (
     <>
-      <View className=" items-center ">
+      <View className=" items-center">
         <Text className="text-2xl mb-2 text-white font-psemibold ">
           {title}
         </Text>

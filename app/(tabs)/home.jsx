@@ -12,6 +12,12 @@ const events = [
   { $id: 2, title: "Eventos del mes", thumbnail: images.monthly_event },
 ];
 
+const tickets = [
+  { $id: 0, title: "Paseo de mascotas", type: "pets", ticket: "0" },
+  { $id: 1, title: "Filtracion de agua", type: "house", ticket: "1" },
+  { $id: 2, title: "Paseo de mascotas", type: "food", ticket: "2" },
+];
+
 const Home = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -22,7 +28,7 @@ const Home = () => {
             resizeMode="cover"
             className="w-[250px] h-[42px] -left-2"
           />
-          <TouchableOpacity onPress={()=> router.push('/profile')}>
+          <TouchableOpacity onPress={() => router.push("/profile")}>
             <Image
               className=" ml-5 rounded-full w-[50] h-[50]"
               resizeMode="cover"
@@ -58,8 +64,7 @@ const Home = () => {
           </View>
         </View>
         <View>
-          <View className="mt-6 space-y-2">
-          </View>
+          <View className="mt-6 space-y-2"></View>
         </View>
       </ScrollView>
     </SafeAreaView>

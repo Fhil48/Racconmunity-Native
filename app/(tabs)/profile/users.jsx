@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import * as DocumentPicker from "expo-document-picker";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CustomButton, FormField } from "../../../components/index";
-import { icons } from "../../../constants";
+import { icons, images } from "../../../constants";
 import ReturnButton from "../../../components/profile/ReturnButton";
 import { router } from "expo-router";
 
@@ -35,9 +35,16 @@ const MyProfile = () => {
     <SafeAreaView className="bg-primary h-full">
       <ScrollView className="px-4 my-0">
         <ReturnButton
-          title="Mi Perfil"
+          title="Usuarios"
           handlePress={() => router.push("/profile")}
         />
+        <TouchableOpacity
+          onPress={() => router.push("sign-up")}
+          className="absolute top-4 right-0 pr-3 pt-2"
+        >
+          <Image className="w-4 h-4 absolute ml-7" source={icons.plus} />
+          <Image className="w-8 h-8 " source={icons.profile} />
+        </TouchableOpacity>
 
         <View className="mt-7 space-y-2">
           <Text className="text-base text-gray-100 font-pmedium">
@@ -69,26 +76,6 @@ const MyProfile = () => {
           <Text className="text-2xl text-white font-psemibold">
             Cambio de contraseña
           </Text>
-
-          <FormField
-            title="Contraseña actual"
-            type="password"
-            handleChangeText={(e) => setForm({ ...form, currentPassword: e })}
-            otherStyles="mt-7"
-          />
-          <FormField
-            title="Nueva contraseña"
-            type="password"
-            handleChangeText={(e) => setForm({ ...form, newPassword: e })}
-            otherStyles="mt-7"
-          />
-          <FormField
-            title="Confirmar nueva contraseña"
-            type="password"
-            handleChangeText={(e) => setForm({ ...form, confirmPassword: e })}
-            otherStyles="mt-7"
-          />
-          <CustomButton title="Actualizar" containerStyles="mt-7 " />
         </View>
       </ScrollView>
     </SafeAreaView>
