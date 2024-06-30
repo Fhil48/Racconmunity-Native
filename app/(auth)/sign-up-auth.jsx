@@ -5,18 +5,18 @@ import FormField from '../../components/FormField'
 import { useState } from 'react'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-import { signIn } from '../../lib/appwrite'
+import { createUserAuth } from '../../lib/appwrite'
 
-const SignIn = () => {
-  const [form, setForm] = useState({email:'', pass:''});
+const Signup = () => {
+  const [form, setForm] = useState({username:'',email:'', pass:''});
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async () => {
     setIsLoading(true)
     try {
-      if(!form.pass || !form.email) Alert.alert('Error', 'Completa todos los campos')
-        await signIn(form.email, form.pass);
-        router.replace('/home')
+      if(!form.username || !form.pass || !form.email) Alert.alert('Error', 'Completa todos los campos')
+      await createUserAuth(form);
+      router.replace('/home')
     } catch (error) {
       Alert.alert('Error', error.message)
     } finally{
@@ -33,10 +33,18 @@ const SignIn = () => {
             resizeMode='cover'
             className="w-[350px] h-[42px] p-0 m-0 -left-4"
           />
-          <Text className="text-sm text-white text-semibold mt-4 font-psemibold">Completa los siguientes campos</Text>
+          <Text className="text-sm text-white text-semibold mt-4 font-psemibold">Completa los siguientes campos registrarte</Text>
+          <FormField
+            title="Nombre de usuario"
+            placeholder="Hasbulla"
+            value={form?.username}
+            handleChangeText={(e)=> setForm(prev => ({...prev, username: e}))}
+            otherStyles="mt-7"
+          />
           <FormField
             title="Email"
             placeholder="John@doe.cl"
+            value={form?.email}
             handleChangeText={(e)=> setForm(prev => ({...prev, email: e}))}
             otherStyles="mt-7"
             keyboardType="email-address"
@@ -44,16 +52,17 @@ const SignIn = () => {
           <FormField
             title="Contraseña"
             placeholder="*****"
+            value={form?.pass}
             handleChangeText={(e)=> setForm(prev => ({...prev, pass: e}))}
             otherStyles="mt-7"
             keyboardType="password"
           />
-          <CustomButton title="Ingresar" handlePress={handleSubmit} containerStyles="mt-7" isLoading={isLoading}/>
+          <CustomButton title="Registrarme" handlePress={handleSubmit} containerStyles="mt-7" isLoading={isLoading}/>
           <View className="pt-5 justify-center flex-row gap-2">
             <Text className="text-sm text-gray-100 font-pregular">
-              No tienes una cuenta?
+              Ya tienes una cuenta?
             </Text>
-            <Link className='text-md font-psemibold text-secondary-100' href='/sign-up-auth'>Registrate aquí</Link>
+            <Link className='text-md font-psemibold text-secondary-100' href='/sign-in'>Ingresa aquí</Link>
           </View>
         </View>
       </ScrollView>
@@ -61,4 +70,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default Signup

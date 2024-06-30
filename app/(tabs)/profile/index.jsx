@@ -1,14 +1,28 @@
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons, images } from "../../../constants";
 import { router } from "expo-router";
 import CustomButton from "../../../components/CustomButton";
 import ProfileButton from "../../../components/profile/ProfileButton";
 import { useGlobalContext } from "../../../context/GlobalProvider";
+import { signOut } from "../../../lib/appwrite";
 
 const Profile = () => {
   const { user } = useGlobalContext();
+  const [isLoading, setIsLoading] = useState(false)
+
+  const salir = async () => {
+    try {
+      setIsLoading(true)
+      await signOut();
+      router.replace('/'); 
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    } finally{
+      setIsLoading(false)
+    }
+  }
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -58,7 +72,7 @@ const Profile = () => {
             />
           </View>
           <View className="px-2 w-full">
-            <CustomButton title="Salir" handlePress={() => router.push("/")} />
+            <CustomButton title="Salir" handlePress={salir} isLoading={isLoading}/>
           </View>
         </View>
       </ScrollView>
