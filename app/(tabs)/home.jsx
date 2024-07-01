@@ -49,7 +49,7 @@ const Home = () => {
     
     <ScrollView className="px-4 py-6 flex-col w-full">    
       <Trending posts={events} refreshing={refreshing} onRefresh={onRefresh}/>
-        <View className="w-full mt-6">
+      <View className="w-full mt-6">
           <TouchableOpacity className="bg-blue-500 rounded-lg p-2 flex items-center justify-between flex-row">
             <View>
               <Text className="text-white font-pmedium">Próximo evento</Text>
@@ -61,17 +61,28 @@ const Home = () => {
             </View>
           </TouchableOpacity>
         </View>
-        <View className="w-full">
-          <View className="my-6">
-            <Text className="text-white text-2xl font-pbold">Tablón de anuncios</Text>
-            <TicketButton title="Paseo de mascotas" type="pets" ticket="walk" />
-            <TicketButton title="Filtración de agua" type="house" />
-            <TicketButton title="Almuerzos caseros" type="food" />
+      <FlatList
+        data={tickets}
+        horizontal
+        keyExtractor={(item) => item.$id}
+        viewabilityConfig={{
+          itemVisiblePercentThreshold: 70,
+        }}
+        contentOffset={{ x: 170 }}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        style={{ flex: 1, width: '100%' }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        ListHeaderComponent={(item) => (
+          <View className="w-full flex-col">
+            <View className="my-6 w-full">
+              <Text className="text-white text-2xl font-pbold">Tablón de anuncios</Text>
+              { tickets && tickets.map(item => (
+                <TicketButton title="Paseo de mascotas" type="pets" ticket="walk" />
+              )) }
+            </View>
           </View>
-        </View>
-        <View className="w-full">
-          <View className="mt-6 space-y-2"></View>
-        </View>
+        )}
+      />
       </ScrollView>
   </SafeAreaView>
   
