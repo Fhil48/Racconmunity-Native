@@ -9,11 +9,13 @@ import {
   Text,
   TouchableOpacity,
   View, 
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
 import EmptyState from "../../components/EmptyState";
 import { icons, images } from "../../constants";
 import TicketButton from "../../components/profile/TicketButton";
+import { getAllTickets } from "../../lib/appwrite";
 
 // const events = [];
 const events = [
@@ -22,16 +24,11 @@ const events = [
   { $id: 2, title: "Eventos del mes", thumbnail: images.monthly_event },
 ];
 
-const tickets = [
-  { $id: 0, title: "Paseo de mascotas", type: "pets", ticket: "0" },
-  { $id: 1, title: "Filtracion de agua", type: "house", ticket: "1" },
-  { $id: 2, title: "Paseo de mascotas", type: "food", ticket: "2" },
-];
-
 const Home = () => {
-
-
+  
   const [refreshing, setRefreshing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -39,7 +36,19 @@ const Home = () => {
   }
 
   useEffect(() => {
-
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const resp = await getAllTickets();
+        setData(resp);
+        console.log(resp);
+      } catch (error) {
+        Alert.alert('Error', error.message);
+      } finally{
+        setIsLoading(false)
+      }
+    }
+    fetchData()
   }, [])
   
 
@@ -62,7 +71,7 @@ const Home = () => {
           </TouchableOpacity>
         </View>
       <FlatList
-        data={tickets}
+        data={data}
         horizontal
         keyExtractor={(item) => item.$id}
         viewabilityConfig={{
@@ -76,8 +85,8 @@ const Home = () => {
           <View className="w-full flex-col">
             <View className="my-6 w-full">
               <Text className="text-white text-2xl font-pbold">Tablón de anuncios</Text>
-              { tickets && tickets.map(item => (
-                <TicketButton title="Paseo de mascotas" type="pets" ticket="walk" />
+              { data && data.map(item => (
+                <TicketButton key={item.title} title={item.title} type="pets" ticket="walk" />
               )) }
             </View>
           </View>
