@@ -5,11 +5,15 @@ import {
   FlatList,
   Image,
   ImageBackground,
+  RefreshControl,
   Text,
   TouchableOpacity,
-  View,
+  View, 
+  ScrollView
 } from "react-native";
-import { icons } from "../constants";
+import { icons, images } from "../constants";
+import { router } from "expo-router";
+import TicketButton from "./profile/TicketButton";
 
 const zoomIn = {
   0: {
@@ -32,39 +36,39 @@ const zoomOut = {
 const TrendingItem = ({ activeItem, item }) => {
   return (
     <Animatable.View
-      className="mr-5"
-      animation={activeItem === item.$id ? zoomIn : zoomOut}
-      duration={500}
+    className="mr-5"
+    animation={activeItem === item.$id ? zoomIn : zoomOut}
+    duration={500}
+  >
+    <TouchableOpacity
+      className="relative flex justify-center items-center"
+      activeOpacity={0.7}
     >
-      <TouchableOpacity
-        className="relative flex justify-center items-center"
-        activeOpacity={0.7}
+      <ImageBackground
+        source={item.thumbnail}
+        className="w-72 h-70 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40 justify-between pb-6"
+        resizeMode="cover"
       >
-        <ImageBackground
-          source={item.thumbnail}
-          className="w-72 h-72 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40 justify-between pb-6"
-          resizeMode="cover"
-        >
-          <View className="mt-20 ml-4">
-            <Text className="text-white text-xl font-pbold  ">
-              {item.title}
-            </Text>
-            <Text className="text-white text-sm font-pbold ">Se parte de</Text>
-            <Text className="text-white text-sm font-pbold ">
-              nuestra comunidad
-            </Text>
-          </View>
-          <TouchableOpacity className="border-2 border-white rounded-lg mt-4 ml-4 w-[180px] flex flex-row items-center py-2 px-4 bg-[#31313129]">
-            <Text className="text-white text-sm font-pbold">Acompañanos</Text>
-            <Image source={icons.rightArrow} className="ml-2" />
-          </TouchableOpacity>
-        </ImageBackground>
-      </TouchableOpacity>
-    </Animatable.View>
+        <View className="mt-16 ml-4">
+          <Text className="text-white text-xl font-pbold">
+            {item.title}
+          </Text>
+          <Text className="text-white text-sm font-pbold">Se parte de</Text>
+          <Text className="text-white text-sm font-pbold">
+            nuestra comunidad
+          </Text>
+        </View>
+        <TouchableOpacity className="border-2 border-white rounded-lg mt-4 ml-4 w-[180px] flex flex-row items-center py-2 px-4 bg-[#31313129]">
+          <Text className="text-white text-sm font-pbold">Acompañanos</Text>
+          <Image source={icons.rightArrow} className="ml-2" />
+        </TouchableOpacity>
+      </ImageBackground>
+    </TouchableOpacity>
+  </Animatable.View>
   );
 };
 
-const Trending = ({ posts }) => {
+const Trending = ({ posts, refreshing, onRefresh }) => {
   const [activeItem, setActiveItem] = useState(posts[0]);
 
   const viewableItemsChanged = ({ viewableItems }) => {
@@ -86,6 +90,9 @@ const Trending = ({ posts }) => {
         itemVisiblePercentThreshold: 70,
       }}
       contentOffset={{ x: 170 }}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+      style={{ flex: 1, width: '100%' }}
+      contentContainerStyle={{ flexGrow: 1 }}
     />
   );
 };
