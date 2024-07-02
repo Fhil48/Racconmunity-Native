@@ -60,7 +60,7 @@ const CreateButton = () => {
           />
         </View>
       </Modal>
-      <View className="w-16 h-16 absolute right-0 bottom-2 z-20 ">
+      <View className="w-16 h-16 absolute right-0 border-2 border-red-500 bottom-2  z-10">
         <TouchableOpacity
           onPress={() => setModalVisible(true)}
           className=" h-full rounded-full bg-green-499 items-center justify-center opacity-100"

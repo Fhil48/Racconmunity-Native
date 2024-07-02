@@ -53,8 +53,8 @@ const Home = () => {
 
   return (
     <SafeAreaView className="bg-primary h-full w-full">
+      <CreateButton />
       <ScrollView className="px-4 py-6 flex-col w-full">
-        <CreateButton />
         <Trending
           posts={events}
           refreshing={refreshing}
