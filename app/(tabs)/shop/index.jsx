@@ -1,10 +1,11 @@
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../../constants";
 import { router } from "expo-router";
+import { getAllProducts } from "../../../lib/appwrite";
 
-const data = [
+const data2 = [
   {
     $id: 0,
     title: "Bicicleta",
@@ -64,6 +65,7 @@ const data = [
 ];
 
 const ShopItem = ({ thumbnail, price, title }) => {
+  console.log(thumbnail);
   return (
     <TouchableOpacity
       onPress={() => {
@@ -74,7 +76,7 @@ const ShopItem = ({ thumbnail, price, title }) => {
       <Image
         className="w-full h-[120px] rounded-lg rounded-b-none"
         resizeMode="cover"
-        source={thumbnail}
+        source={{ uri: thumbnail }}
       />
       <Text className="text-white font-pbold text-2xl mt-2 ml-2">${price}</Text>
       <Text className="text-white font-pregular ml-2">{title}</Text>
@@ -83,6 +85,25 @@ const ShopItem = ({ thumbnail, price, title }) => {
 };
 
 const shop = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const resp = await getAllProducts();
+        setData(resp);
+        console.log("productos", resp);
+      } catch (error) {
+        Alert.alert("Error", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView className="px-4 py-6">
@@ -90,8 +111,8 @@ const shop = () => {
         <View className="flex flex-wrap flex-row">
           {data.map((item, i) => (
             <ShopItem
-              thumbnail={images.bicicleta}
-              price={item.precio}
+              thumbnail={item.thumbnail}
+              price={item.price}
               title={item.title}
               key={i}
             />
