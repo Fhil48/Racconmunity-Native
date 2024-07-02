@@ -16,6 +16,8 @@ import FormField from "../../components/FormField";
 import { icons } from "../../constants";
 import CustomButton from "../../components/CustomButton";
 import * as DocumentPicker from "expo-document-picker";
+import FormDate from "../../components/FormDate";
+import { createTicket } from "../../lib/appwrite";
 
 const Create = () => {
   const { createType } = useLocalSearchParams();
@@ -33,7 +35,7 @@ const Create = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const openPicker = async (selectType) => {
+  const openPicker = async () => {
     const result = await DocumentPicker.getDocumentAsync({
       type: ["image/png", "image/jpg"],
     });
@@ -58,13 +60,8 @@ const Create = () => {
 
     //separa con if si se llama a createSell o createTicket o createEvent
     try {
-      await createUser(
-        form.email,
-        form.password,
-        form.username,
-        form.rol,
-        form.thumbnail,
-      );
+      console.log(form);
+      await createTicket({ ...form, category: createType });
 
       router.replace("/home");
     } catch (error) {
@@ -85,19 +82,19 @@ const Create = () => {
           <FormField
             title="Titulo"
             value={form.title}
-            handleChangeText={(e) => setForm({ ...form, username: e })}
+            handleChangeText={(e) => setForm({ ...form, title: e })}
             otherStyles="mt-10"
           ></FormField>
           <FormField
             title="Descripción"
             value={form.description}
-            handleChangeText={(e) => setForm({ ...form, email: e })}
+            handleChangeText={(e) => setForm({ ...form, description: e })}
             otherStyles="mt-7"
           />
 
           <View className="mt-7 space-y-2">
             <Text className="text-base text-gray-100 font-pmedium">Imagen</Text>
-            <TouchableOpacity onPress={() => openPicker("image")}>
+            <TouchableOpacity onPress={() => openPicker()}>
               {form.thumbnail ? (
                 <Image
                   source={{ uri: form.thumbnail.uri }}
@@ -123,25 +120,19 @@ const Create = () => {
             <FormField
               title="Precio"
               value={form.price}
-              handleChangeText={(e) => setForm({ ...form, password: e })}
+              handleChangeText={(e) => setForm({ ...form, price: e })}
               otherStyles="mt-7"
             />
           )}
-
           {createType === "ticket" && (
-            <FormField
-              title="Fecha"
-              value={form.date}
-              handleChangeText={(e) => setForm({ ...form, password: e })}
-              otherStyles="mt-7"
-            />
+            <FormDate handleChangeDate={(e) => setForm({ ...form, date: e })} />
           )}
 
           {createType === "event" && (
             <FormField
               title="Evento"
               value={form.location}
-              handleChangeText={(e) => setForm({ ...form, password: e })}
+              handleChangeText={(e) => setForm({ ...form, location: e })}
               otherStyles="mt-7"
             />
           )}

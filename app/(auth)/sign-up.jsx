@@ -1,19 +1,17 @@
 import {
   Alert,
-  FlatList,
   Image,
   ScrollView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { icons, images } from "../../constants";
+import { icons } from "../../constants";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import { createUser } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import ReturnButton from "../../components/profile/ReturnButton";
@@ -31,7 +29,7 @@ const SignUp = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const openPicker = async (selectType) => {
+  const openPicker = async () => {
     const result = await DocumentPicker.getDocumentAsync({
       type: ["image/png", "image/jpg"],
     });

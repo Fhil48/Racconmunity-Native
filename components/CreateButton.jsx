@@ -1,17 +1,15 @@
 import {
   FlatList,
   Image,
+  ImageBackground,
   Modal,
-  Pressable,
-  StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import React, { useState } from "react";
 import { router, usePathname } from "expo-router";
-import { icons } from "../constants";
+import { icons, images } from "../constants";
 const CreateButton = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -24,14 +22,18 @@ const CreateButton = () => {
   const pathname = usePathname();
 
   return (
-    <View className="w-16 h-16 absolute right-0 bottom-2 z-20 ">
+    <>
       <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View className=" h-56 px-0 ml-0 absolute py-2 bottom-24 rounded-2xl right-0 bg-black-200">
+        <TouchableOpacity
+          className=" w-full  h-full  absolute "
+          onPress={() => setModalVisible(false)}
+        ></TouchableOpacity>
+        <View className=" h-56 px-0 ml-0 absolute py-2 bottom-24 rounded-2xl right-0 bg-black-200 z-10">
           <FlatList
             data={create}
             keyExtractor={(item) => item.id}
@@ -58,14 +60,15 @@ const CreateButton = () => {
           />
         </View>
       </Modal>
-
-      <TouchableOpacity
-        onPress={() => setModalVisible(true)}
-        className=" h-full rounded-full bg-green-499 items-center justify-center opacity-100"
-      >
-        <Image source={icons.plus} className={`${modalVisible && "h-0"}`} />
-      </TouchableOpacity>
-    </View>
+      <View className="w-16 h-16 absolute right-0 bottom-2 z-20 ">
+        <TouchableOpacity
+          onPress={() => setModalVisible(true)}
+          className=" h-full rounded-full bg-green-499 items-center justify-center opacity-100"
+        >
+          <Image source={icons.plus} className={`${modalVisible && "h-0"}`} />
+        </TouchableOpacity>
+      </View>
+    </>
   );
 };
 
