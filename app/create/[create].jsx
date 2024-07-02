@@ -17,12 +17,16 @@ import { icons } from "../../constants";
 import CustomButton from "../../components/CustomButton";
 import * as DocumentPicker from "expo-document-picker";
 import FormDate from "../../components/FormDate";
-import { createTicket } from "../../lib/appwrite";
+import { createTicket, createProduct } from "../../lib/appwrite";
 
 const Create = () => {
   const { createType } = useLocalSearchParams();
-  console.log(createType);
-  const { user, setIsLogged } = useGlobalContext();
+  const createTitle = {
+    sell: "producto",
+    event: "evento",
+    ticket: "anuncio",
+  };
+  const { user } = useGlobalContext();
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -37,7 +41,7 @@ const Create = () => {
 
   const openPicker = async () => {
     const result = await DocumentPicker.getDocumentAsync({
-      type: ["image/png", "image/jpg"],
+      type: ["image/png", "image/jpg", "image/jpeg"],
     });
 
     if (!result.canceled) {
@@ -58,10 +62,13 @@ const Create = () => {
 
     setIsSubmitting(true);
 
-    //separa con if si se llama a createSell o createTicket o createEvent
     try {
       console.log(form);
-      await createTicket({ ...form, category: createType });
+      if (createType === "ticket")
+        await createTicket({ ...form, category: createType });
+      else if (createType === "sell")
+        await createProduct({ ...form, category: createType });
+      else await createEvent({ ...form, category: createType });
 
       router.replace("/home");
     } catch (error) {
@@ -76,7 +83,7 @@ const Create = () => {
       <ScrollView>
         <View className="w-fill justify-center min-h-[85vh] px-4 my-6">
           <ReturnButton
-            title={`Crear ${createType}`}
+            title={`Crear ${createTitle[createType]}`}
             handlePress={() => router.push("home")}
           />
           <FormField
@@ -120,6 +127,7 @@ const Create = () => {
             <FormField
               title="Precio"
               value={form.price}
+              type="numeric"
               handleChangeText={(e) => setForm({ ...form, price: e })}
               otherStyles="mt-7"
             />
@@ -137,7 +145,7 @@ const Create = () => {
             />
           )}
           <CustomButton
-            title={`Añadir ${createType}`}
+            title={`Añadir ${createTitle[createType]}`}
             handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}
