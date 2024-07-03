@@ -7,14 +7,8 @@ import { images } from "../../../../constants";
 import { CustomButton } from "../../../../components";
 
 const Ticket = () => {
-  const data = {
-    title: "title",
-    description: "description",
-    background: "bg-red",
-  };
   const { ticket } = useLocalSearchParams();
-  console.log(ticket);
-  //const { data: posts, refetch } = useAppwrite(() => searchTicket(ticket));
+
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView className="h-full ">

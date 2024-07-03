@@ -1,106 +1,65 @@
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import {
+  Alert,
+  FlatList,
+  Image,
+  RefreshControl,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { images } from "../../../constants";
-import { router } from "expo-router";
+import { router, usePathname } from "expo-router";
+import { getAllProducts } from "../../../lib/appwrite";
+import useAppwrite from "../../../lib/useAppwrite";
+import { EmptyState } from "../../../components";
 
-const data = [
-  {
-    $id: 0,
-    title: "Bicicleta",
-    caracteristicas: "marca y modelo",
-    precio: "60000",
-    descripcion: "una bicicleta",
-  },
-  {
-    $id: 1,
-    title: "Bicicleta",
-    caracteristicas: "marca y modelo",
-    precio: "60000",
-    descripcion: "una bicicleta",
-  },
-  {
-    $id: 2,
-    title: "Bicicleta",
-    caracteristicas: "marca y modelo",
-    precio: "60000",
-    descripcion: "una bicicleta",
-  },
-  {
-    $id: 3,
-    title: "Bicicleta",
-    caracteristicas: "marca y modelo",
-    precio: "60000",
-    descripcion: "una bicicleta",
-  },
-  {
-    $id: 4,
-    title: "Bicicleta",
-    caracteristicas: "marca y modelo",
-    precio: "60000",
-    descripcion: "una bicicleta",
-  },
-  {
-    $id: 5,
-    title: "Bicicleta",
-    caracteristicas: "marca y modelo",
-    precio: "60000",
-    descripcion: "una bicicleta",
-  },
-  {
-    $id: 6,
-    title: "Bicicleta",
-    caracteristicas: "marca y modelo",
-    precio: "60000",
-    descripcion: "una bicicleta",
-  },
-  {
-    $id: 7,
-    title: "Bicicleta",
-    caracteristicas: "marca y modelo",
-    precio: "60000",
-    descripcion: "una bicicleta",
-  },
-];
-
-const ShopItem = ({ thumbnail, price, title }) => {
+const ShopItem = ({ item }) => {
+  const pathname = usePathname();
   return (
     <TouchableOpacity
       onPress={() => {
-        router.push(`shop/itemShop`);
+        router.push("shop/itemShop");
       }}
       className="w-1/2 h-50 border-2 p-2 border-white rounded-lg "
     >
       <Image
         className="w-full h-[120px] rounded-lg rounded-b-none"
         resizeMode="cover"
-        source={thumbnail}
+        source={{ uri: item.thumbnail }}
       />
-      <Text className="text-white font-pbold text-2xl mt-2 ml-2">${price}</Text>
-      <Text className="text-white font-pregular ml-2">{title}</Text>
+      <Text className="text-white font-pbold text-2xl mt-2 ml-2">
+        ${item.price}
+      </Text>
+      <Text className="text-white font-pregular ml-2">{item.title}</Text>
     </TouchableOpacity>
   );
 };
 
 const shop = () => {
+  const { data, refetch } = useAppwrite(getAllProducts);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
   return (
-    <SafeAreaView className="bg-primary h-full">
-      <ScrollView className="px-4 py-6">
-        <Text className="text-white text-2xl font-pbold">Tienda</Text>
-        <View className="flex flex-wrap flex-row">
-          {data.map((item, i) => (
-            <ShopItem
-              thumbnail={images.bicicleta}
-              price={item.precio}
-              title={item.title}
-              key={i}
-            />
-          ))}
-        </View>
-        <View>
-          <View className="mt-6 space-y-2"></View>
-        </View>
-      </ScrollView>
+    <SafeAreaView className="bg-primary h-full px-4 ">
+      <Text className="text-white text-2xl font-pbold my-4">Tienda</Text>
+      <FlatList
+        data={data}
+        numColumns={2}
+        keyExtractor={(item) => item.$id}
+        renderItem={({ item }) => <ShopItem item={item} />}
+        ListEmptyComponent={() => <EmptyState title="Nada para comprar aún" />}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      />
     </SafeAreaView>
   );
 };

@@ -34,7 +34,9 @@ const TicketButton = ({ title, type, isLoading, ticket }) => {
       <View className="bg-white p-2 rounded-3xl mr-4">
         <Image source={icons[type]} className="w-10 h-10" />
       </View>
-      <Text className={`text-white font-psemibold text-sm w-[78%]`}>{title}</Text>
+      <Text className={`text-white font-psemibold text-sm w-[78%]`}>
+        {title}
+      </Text>
       {isLoading && (
         <ActivityIndicator
           animating={isLoading}

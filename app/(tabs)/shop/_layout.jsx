@@ -1,5 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
-
 import React from "react";
 import { Stack } from "expo-router";
 
@@ -8,7 +6,7 @@ const ShopLayout = () => {
     <>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="itemShop" options={{ headerShown: false }} />
+        <Stack.Screen name="shop/itemshop" options={{ headerShown: false }} />
       </Stack>
     </>
   );

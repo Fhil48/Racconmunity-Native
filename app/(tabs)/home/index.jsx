@@ -8,15 +8,14 @@ import {
   RefreshControl,
   Text,
   TouchableOpacity,
-  View, 
+  View,
   ScrollView,
-  Alert
+  Alert,
 } from "react-native";
-import EmptyState from "../../../components/EmptyState";
-import { icons, images } from "../../../constants";
-import TicketButton from "../../../components/profile/TicketButton";
-import { getAllTickets } from "../../../lib/appwrite";
-import RecentEvent from "../../../components/recentEvent";
+import EmptyState from "../../components/EmptyState";
+import { icons, images } from "../../constants";
+import TicketButton from "../../components/profile/TicketButton";
+import { getAllTickets } from "../../lib/appwrite";
 
 // const events = [];
 const events = [
@@ -26,7 +25,6 @@ const events = [
 ];
 
 const Home = () => {
-  
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -34,7 +32,7 @@ const Home = () => {
   const onRefresh = () => {
     setRefreshing(true);
     setRefreshing(false);
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,26 +40,22 @@ const Home = () => {
         setIsLoading(true);
         const resp = await getAllTickets();
         setData(resp);
-        console.log(resp);
       } catch (error) {
-        Alert.alert('Error', error.message);
-      } finally{
-        setIsLoading(false)
+        Alert.alert("Error", error.message);
+      } finally {
+        setIsLoading(false);
       }
-    }
-    fetchData()
-  }, [])
-  
-
+    };
+    fetchData();
+  }, []);
 
   return (
     <SafeAreaView className="bg-primary h-full w-full">
-    
-    <ScrollView className="px-4 py-6 flex-col w-full">    
-      <Trending posts={events} refreshing={refreshing} onRefresh={onRefresh}/>
-      <View className="w-full mt-6">
-        <RecentEvent/>
-      </View>
+      <ScrollView className="px-4 py-6 flex-col w-full">    
+        <Trending posts={events} refreshing={refreshing} onRefresh={onRefresh}/>
+        <View className="w-full mt-6">
+          <RecentEvent/>
+        </View>
       <FlatList
         data={data}
         horizontal
