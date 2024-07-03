@@ -12,10 +12,12 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import EmptyState from "../../components/EmptyState";
-import { icons, images } from "../../constants";
-import TicketButton from "../../components/profile/TicketButton";
-import { getAllTickets } from "../../lib/appwrite";
+
+
+import { images } from "../../../constants";
+import TicketButton from "../../../components/profile/TicketButton";
+import { getAllTickets } from "../../../lib/appwrite";
+import RecentEvent from "../../../components/recentEvent";
 
 // const events = [];
 const events = [

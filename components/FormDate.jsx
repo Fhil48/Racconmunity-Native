@@ -1,6 +1,6 @@
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
-import DatePicker from "react-native-modern-datepicker";
+import {DatePicker} from "react-native-modern-datepicker";
 
 const FormDate = ({ handleChangeDate }) => {
   const [date, setDate] = useState("");
