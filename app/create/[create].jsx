@@ -17,7 +17,7 @@ import { icons } from "../../constants";
 import CustomButton from "../../components/CustomButton";
 import * as DocumentPicker from "expo-document-picker";
 import FormDate from "../../components/FormDate";
-import { createTicket, createProduct } from "../../lib/appwrite";
+import { createTicket, createProduct, createEvent } from "../../lib/appwrite";
 
 const Create = () => {
   const { createType } = useLocalSearchParams();
@@ -134,7 +134,9 @@ const Create = () => {
           {createType === "ticket" && (
             <FormDate handleChangeDate={(e) => setForm({ ...form, date: e })} />
           )}
-
+          {createType === "event" && (
+            <FormDate handleChangeDate={(e) => setForm({ ...form, date: e })} />
+          )}
           {createType === "event" && (
             <FormField
               title="Evento"
