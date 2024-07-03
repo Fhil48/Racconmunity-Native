@@ -12,11 +12,11 @@ import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import ReturnButton from "../../components/profile/ReturnButton";
+import FormDate from "../../components/FormDate";
 import FormField from "../../components/FormField";
 import { icons } from "../../constants";
 import CustomButton from "../../components/CustomButton";
 import * as DocumentPicker from "expo-document-picker";
-import FormDate from "../../components/FormDate";
 import { createTicket, createProduct, createEvent } from "../../lib/appwrite";
 
 const Create = () => {
