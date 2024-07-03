@@ -52,7 +52,6 @@ const App = () => {
         />
       </ScrollView>
     </SafeAreaView>
-    
   )
 }
 

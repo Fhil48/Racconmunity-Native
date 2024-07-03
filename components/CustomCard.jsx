@@ -5,18 +5,32 @@ import ReadMoreText from 'react-native-read-more-text';
 export function CustomCard({ title, image, description, date, onPress, creator, cancelar, onPressCancel, state }) {
   return (
     <View style={styles.card}>
-      <View style={styles.cardHeader}>
+      <View style={styles.cardHeader} className="relative">
         <Image
           source={{ uri: image }}
           style={styles.cardImage}
         />
+        {state && 
+          <Text
+            className={`p-2 text-white text-sm font-pregular rounded absolute bottom-0 right-0 ${
+              state === 'active' 
+                ? 'bg-green-700' 
+                : state === 'canceled' 
+                ? 'bg-gray-500' 
+                : 'bg-gray-800'
+            }`}
+            styles={{ padding:'10px' }}
+          >
+            {state === 'active' 
+              ? 'Activo' 
+              : state === 'canceled' 
+              ? 'Cancelado' 
+              : 'Finalizado'}
+          </Text>
+        }
       </View>
       <View style={styles.cardBody}>
-        <Text style={styles.cardTitle}>{title} 
-        
-        {state && <Text className={`px-2 py-1 text-white text-sm font-pregular ${state === 'active' ? 'bg-green-700' : state === 'canceled' ? 'bg-gray-500' : 'bg-gray-800' }`} style={{ borderRadius:'5px', padding:'5px 2px' }}>{state === 'active' ? 'Activo' : state === 'canceled' ? 'Cancelado' : 'Finalizado'}</Text>}
-        
-        </Text>
+        <Text style={styles.cardTitle}>{title}</Text>
         <Text style={styles.cardText}>
             <Text className="text-ellipsis">{description}</Text>
         </Text>

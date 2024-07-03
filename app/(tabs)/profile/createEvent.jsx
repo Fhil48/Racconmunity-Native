@@ -17,7 +17,7 @@ const CreateEvent = () => {
         title: "",
         description: "",
         date: "",
-        ubication: "user",
+        ubication: "",
         thumbnail: null,
     });
     

@@ -19,6 +19,7 @@ import calendar from "../assets/icons/calendar.png";
 import pets from "../assets/icons/pets.png";
 import house from "../assets/icons/house.png";
 import food from "../assets/icons/food.png";
+import edit from "../assets/icons/edit.png";
 export default {
   play,
   bookmark,
@@ -41,4 +42,5 @@ export default {
   house,
   food,
   calendar,
+  edit,
 };

@@ -13,6 +13,7 @@ const ProfileLayout = () => {
         <Stack.Screen name="notifications" options={{ headerShown: false }} />
         <Stack.Screen name="configuration" options={{ headerShown: false }} />
         <Stack.Screen name="events" options={{ headerShown: false }} />
+        <Stack.Screen name="details" options={{ headerShown: false }} />
         <Stack.Screen name="createEvent" options={{ headerShown: false }} />
         <Stack.Screen name="tickets/[ticket]" options={{ headerShown: false }} />
       </Stack>
