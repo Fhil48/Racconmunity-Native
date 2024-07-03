@@ -8,6 +8,7 @@ import { CustomButton } from "../../../../components";
 
 const Ticket = () => {
   const { ticket } = useLocalSearchParams();
+  console.log(ticket);
 
   return (
     <SafeAreaView className="bg-primary h-full">

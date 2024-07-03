@@ -5,9 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import ReturnButton from "../../../components/profile/ReturnButton";
 import { CustomButton } from "../../../components";
 
-const ItemShop = () => {
+const Item = () => {
   const { product } = useLocalSearchParams();
-  console.log("producto: ", product);
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -16,24 +15,26 @@ const ItemShop = () => {
           <ReturnButton title="" handlePress={() => router.push("/shop")} />
           <View className=" -z-10 absolute w-[400px] h-[300px]">
             <Image
-              source={{ uri: thumbnail }}
+              source={{ uri: product.thumbnail }}
               className="h-full  w-full"
               resizeMode="cover"
             />
           </View>
           <View className="w-full py-4 mb-auto  rounded-[40px] rounded-b-none mt-32 bg-[#D9D9D9] z-10">
             <View className="mt-2 ml-4 mb-4">
-              <Text className="text-2xl text-primary font-pbold">{title}</Text>
-              <Text className="">{author}</Text>
+              <Text className="text-2xl text-primary font-pbold">
+                {product.title}
+              </Text>
+              <Text className="">{product.author}</Text>
             </View>
             <View className="mt-2 ml-4">
               <Text className="font-pmedium text-sm text-primary mb-4">
-                {description}
+                {product.description}
               </Text>
             </View>
             <View className="mt-2 ml-4">
               <Text className="text-2xl text-primary mb-4 font-pbold">
-                Precio: ${price}
+                Precio: ${product.price}
               </Text>
             </View>
 
@@ -49,4 +50,4 @@ const ItemShop = () => {
   );
 };
 
-export default ItemShop;
+export default Item;

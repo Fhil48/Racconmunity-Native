@@ -20,7 +20,7 @@ const ShopItem = ({ item }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        router.push("shop/itemShop");
+        router.push("shop/item");
       }}
       className="w-1/2 h-50 border-2 p-2 border-white rounded-lg "
     >
