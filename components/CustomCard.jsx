@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import ReadMoreText from 'react-native-read-more-text';
 
-export function CustomCard({ title, image, description, date, onPress, creator }) {
+export function CustomCard({ title, image, description, date, onPress, creator, cancelar, onPressCancel, state }) {
   return (
     <View style={styles.card}>
       <View style={styles.cardHeader}>
@@ -12,13 +12,20 @@ export function CustomCard({ title, image, description, date, onPress, creator }
         />
       </View>
       <View style={styles.cardBody}>
-        <Text style={styles.cardTitle}>{title}</Text>
+        <Text style={styles.cardTitle}>{title} 
+        
+        {state && <Text className={`px-2 py-1 text-white text-sm font-pregular ${state === 'active' ? 'bg-green-700' : state === 'canceled' ? 'bg-gray-500' : 'bg-gray-800' }`} style={{ borderRadius:'5px', padding:'5px 2px' }}>{state === 'active' ? 'Activo' : state === 'canceled' ? 'Cancelado' : 'Finalizado'}</Text>}
+        
+        </Text>
         <Text style={styles.cardText}>
             <Text className="text-ellipsis">{description}</Text>
         </Text>
       </View>
-      <View style={styles.cardFooter}>
-        <TouchableOpacity style={styles.button} className="bg-orange-400 w-full" onPress={onPress}>
+      <View style={styles.cardFooter} className="flex-row gap-2">
+        {cancelar && <TouchableOpacity style={styles.button} className="bg-red-800 w-full flex-1" onPress={onPressCancel}>
+          <Text style={styles.buttonText} className="text-center">Cancelar evento</Text>
+        </TouchableOpacity>}
+        <TouchableOpacity style={styles.button} className="bg-orange-400 w-full flex-1" onPress={onPress}>
           <Text style={styles.buttonText} className="text-center">Ver más</Text>
         </TouchableOpacity>
       </View>
