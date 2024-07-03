@@ -7,10 +7,14 @@ import {
   SafeAreaView,
   View,
   Text,
+  ScrollView,
 } from "react-native";
 import moment from "moment";
 import "moment/locale/es";
 import Swiper from "react-native-swiper";
+import { getAllEvents } from "../../lib/appwrite";
+import ReadMoreText from 'react-native-read-more-text';
+import { format } from "date-fns";
 
 const { width } = Dimensions.get("window");
 
@@ -43,29 +47,38 @@ const Calendar = () => {
     });
   }, [week]);
 
+  const renderTruncatedFooter = (handlePress) => {
+    return (
+      <Text className="mt-2 text-secondary-200" onPress={handlePress}>
+        Leer más
+      </Text>
+    );
+  };
+
+  const renderRevealedFooter = (handlePress) => {
+    return (
+      <Text className="mt-2 text-secondary-200" onPress={handlePress}>
+        Leer menos
+      </Text>
+    );
+  };
+
+
   useEffect(() => {
     const fetchDateData = async (selectedDate) => {
       try {
-        const response = await fetch(`//${selectedDate}`);
-        const data = await response.json();
+        setIsLoading(true);
+        console.log('selecteddate',selectedDate)
+        const data = await getAllEvents(selectedDate);
         setInfo(data);
         console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally{
+        setIsLoading(false);
       }
     };
-
-    // fetchDateData(value.toISOString().split('T')[0]);
-    setIsLoading(true);
-    setTimeout(() => {
-      setInfo({
-        title: "Feria de las pulgas",
-        place: "Calle Fantasia 123",
-        description: "Evento de ventas de árticulos de variadas categorías.",
-        user: "Junta de vecinos sector 1",
-      });
-      setIsLoading(false);
-    }, 1000);
+    fetchDateData(value.toISOString());
   }, [value]);
 
   return (
@@ -143,22 +156,33 @@ const Calendar = () => {
             {moment(value).format("dddd, D MMMM YYYY")}
           </Text>
           <View style={styles.placeholder}>
-            <View style={styles.placeholderInset} className="p-2">
+            <ScrollView style={styles.placeholderInset} className="p-2" contentContainerStyle={{ paddingBottom: 16 }}>
               {!isLoading ? (
-                info && (
-                  <>
+                info.length > 0 ? info?.map( event =>  (
+                  <View className="my-2" key={event.title}>
                     <Text className="text-2xl font-pbold text-[#FFF]">
-                      {info.title}
+                      {event.title}
                     </Text>
-                    <Text className="text-[#FFF]">Lugar: {info.place} </Text>
-                    <Text className="text-[#FFF]">Organiza: {info.user}</Text>
-                    <Text className="mt-8 text-[#FFF]">{info.description}</Text>
-                  </>
-                )
-              ) : (
+                    <Text className="text-[#FFF]">Lugar: {event.ubication} </Text>
+                    <Text className="text-[#FFF]">Organiza: {event.create}</Text>
+                    <Text className="text-[#FFF] mt-2">Fecha: {format(event.date, 'dd-MM-yyyy')} {format(event.date, 'HH:mm') } </Text>
+                    <Text className="text-[#FFF] mt-2">Descripción:</Text>
+                    <ReadMoreText
+                      numberOfLines={2}
+                      renderTruncatedFooter={renderTruncatedFooter}
+                      renderRevealedFooter={renderRevealedFooter}
+                      textStyle={{ color: '#FFF' }}
+                    >
+                      <Text>{event.description}</Text>
+                    </ReadMoreText>
+                  </View>
+                )) : <View className="my-2">
+                  <Text className="text-xl font-pbold text-[#FFF]">No hay eventos en esta fecha.</Text>
+                </View>
+                ) : (
                 <Loader isLoading={isLoading} />
               )}
-            </View>
+            </ScrollView>
           </View>
         </View>
       </View>
@@ -231,7 +255,7 @@ const styles = StyleSheet.create({
     color: "#FFF",
   },
   /** Placeholder */
-  placeholder: {
+   placeholder: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
@@ -239,6 +263,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     padding: 0,
     backgroundColor: "transparent",
+    overflow: 'hidden', // Oculta el desbordamiento horizontal y vertical
   },
   placeholderInset: {
     borderWidth: 4,

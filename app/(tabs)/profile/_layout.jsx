@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from "react-native";
-
 import React from "react";
 import { Stack } from "expo-router";
 
@@ -13,10 +12,9 @@ const ProfileLayout = () => {
         <Stack.Screen name="products" options={{ headerShown: false }} />
         <Stack.Screen name="notifications" options={{ headerShown: false }} />
         <Stack.Screen name="configuration" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="tickets/[ticket]"
-          options={{ headerShown: false }}
-        />
+        <Stack.Screen name="events" options={{ headerShown: false }} />
+        <Stack.Screen name="createEvent" options={{ headerShown: false }} />
+        <Stack.Screen name="tickets/[ticket]" options={{ headerShown: false }} />
       </Stack>
     </>
   );

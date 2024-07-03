@@ -1,7 +1,7 @@
 // EN ESTA CARPETA VAN LAS VISTAS UNA VEZ PASADA LA AUTENTICACIÓN DEL LOGIN
 import { View, Text, Image } from "react-native";
 import React from "react";
-import { Redirect, Tabs } from "expo-router";
+import { Redirect, Stack, Tabs } from "expo-router";
 import { icons } from "../../constants";
 
 const TabIcon = ({ icon, color, name, focused }) => {
@@ -98,6 +98,7 @@ const TabsLayout = () => {
             ),
           }}
         />
+        
       </Tabs>
     </>
   );

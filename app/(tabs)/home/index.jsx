@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Trending from "../../components/Trending";
+import Trending from "../../../components/Trending";
 import {
   FlatList,
   Image,
@@ -12,16 +12,17 @@ import {
   ScrollView,
   Alert
 } from "react-native";
-import EmptyState from "../../components/EmptyState";
-import { icons, images } from "../../constants";
-import TicketButton from "../../components/profile/TicketButton";
-import { getAllTickets } from "../../lib/appwrite";
+import EmptyState from "../../../components/EmptyState";
+import { icons, images } from "../../../constants";
+import TicketButton from "../../../components/profile/TicketButton";
+import { getAllTickets } from "../../../lib/appwrite";
+import RecentEvent from "../../../components/recentEvent";
 
 // const events = [];
 const events = [
-  { $id: 0, title: "Eventos del dia", thumbnail: images.day_event },
-  { $id: 1, title: "Eventos de la semana", thumbnail: images.weekly_event },
-  { $id: 2, title: "Eventos del mes", thumbnail: images.monthly_event },
+  { $id: 0, title: "Eventos del dia", thumbnail: images.day_event, type:"del dia" },
+  { $id: 1, title: "Eventos de la semana", thumbnail: images.weekly_event, type:"de la semana" },
+  { $id: 2, title: "Eventos del mes", thumbnail: images.monthly_event, type:"del mes" },
 ];
 
 const Home = () => {
@@ -59,17 +60,8 @@ const Home = () => {
     <ScrollView className="px-4 py-6 flex-col w-full">    
       <Trending posts={events} refreshing={refreshing} onRefresh={onRefresh}/>
       <View className="w-full mt-6">
-          <TouchableOpacity className="bg-blue-500 rounded-lg p-2 flex items-center justify-between flex-row">
-            <View>
-              <Text className="text-white font-pmedium">Próximo evento</Text>
-              <Text className="text-white font-pregular">22h 55m 20s faltantes</Text>
-            </View>
-            <View className="border-2 border-white rounded-lg flex flex-row items-center py-2 px-4">
-              <Text className="text-white text-sm font-pbold">Únete</Text>
-              <Image source={icons.rightArrow} className="ml-2" />
-            </View>
-          </TouchableOpacity>
-        </View>
+        <RecentEvent/>
+      </View>
       <FlatList
         data={data}
         horizontal

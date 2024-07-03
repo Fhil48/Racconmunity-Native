@@ -53,6 +53,12 @@ const Profile = () => {
               handlePress={() => router.push("profile/tickets")}
             />
             <ProfileButton
+              title="Eventos"
+              containerStyles="mt-6"
+              icon={icons.bookmark}
+              handlePress={() => router.push("profile/events")}
+            />
+            <ProfileButton
               title="Productos"
               containerStyles="mt-6"
               icon={icons.bag}

@@ -14,6 +14,7 @@ import {
 import { icons, images } from "../constants";
 import { router } from "expo-router";
 import TicketButton from "./profile/TicketButton";
+import { useNavigation } from '@react-navigation/native';
 
 const zoomIn = {
   0: {
@@ -34,6 +35,8 @@ const zoomOut = {
 };
 
 const TrendingItem = ({ activeItem, item }) => {
+  const navigation = useNavigation();
+
   return (
     <Animatable.View
     className="mr-5"
@@ -43,10 +46,11 @@ const TrendingItem = ({ activeItem, item }) => {
     <TouchableOpacity
       className="relative flex justify-center items-center"
       activeOpacity={0.7}
+      onPress={() => router.push({ pathname: 'home/filterEvents', params: { type: item.type } })}
     >
       <ImageBackground
         source={item.thumbnail}
-        className="w-72 h-70 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40 justify-between pb-6"
+        className="w-72 h-60 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40 justify-between pb-6"
         resizeMode="cover"
       >
         <View className="mt-16 ml-4">
@@ -58,10 +62,6 @@ const TrendingItem = ({ activeItem, item }) => {
             nuestra comunidad
           </Text>
         </View>
-        <TouchableOpacity className="border-2 border-white rounded-lg mt-4 ml-4 w-[180px] flex flex-row items-center py-2 px-4 bg-[#31313129]">
-          <Text className="text-white text-sm font-pbold">Acompañanos</Text>
-          <Image source={icons.rightArrow} className="ml-2" />
-        </TouchableOpacity>
       </ImageBackground>
     </TouchableOpacity>
   </Animatable.View>
