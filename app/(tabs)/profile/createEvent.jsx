@@ -25,8 +25,8 @@ const CreateEvent = () => {
     title: "",
     description: "",
     date: "",
-    ubication: "user",
-    thumbnail: null,
+    ubication: "",
+    thumbnail: {},
     category: "event",
   });
 
@@ -36,6 +36,7 @@ const CreateEvent = () => {
     });
 
     if (!result.canceled) {
+      console.log(result.assets[0])
       setForm({ ...form, thumbnail: result.assets[0] });
     }
   };
@@ -43,7 +44,9 @@ const CreateEvent = () => {
   const submit = async () => {
     try {
       setIsLoading(true);
+      console.log(form);
       await createEvent(form);
+      Alert.alert("Success", 'Evento creado con éxito.');
       router.push("/profile");
     } catch (error) {
       Alert.alert("Error", error.message);
