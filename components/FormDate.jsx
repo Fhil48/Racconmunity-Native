@@ -4,7 +4,6 @@ import DatePicker from "react-native-modern-datepicker";
 
 const FormDate = ({ handleChangeDate }) => {
   const [date, setDate] = useState("");
-  console.log("fecha", typeof date);
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View className="mt-7">
@@ -18,7 +17,6 @@ const FormDate = ({ handleChangeDate }) => {
             mode="datepicker"
             onSelectedChange={(date) => {
               setDate(date);
-              console.log(typeof date);
             }}
           />
           <TouchableOpacity

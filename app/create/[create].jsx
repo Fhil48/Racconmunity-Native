@@ -63,7 +63,6 @@ const Create = () => {
     setIsSubmitting(true);
 
     try {
-      console.log(form);
       if (createType === "ticket")
         await createTicket({ ...form, category: createType });
       else if (createType === "sell")

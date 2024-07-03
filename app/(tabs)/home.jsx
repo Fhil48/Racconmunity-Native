@@ -41,7 +41,6 @@ const Home = () => {
         setIsLoading(true);
         const resp = await getAllTickets();
         setData(resp);
-        console.log(resp);
       } catch (error) {
         Alert.alert("Error", error.message);
       } finally {
