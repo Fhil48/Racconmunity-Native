@@ -63,11 +63,11 @@ const Details = () => {
         }
         if(!isCreator && !isIn){
           await addEventToAgenda(data.$id)
-          Alert.alert('Success', 'Revisa tu perfil, el evento ha sido añadido a tu agenda.')
+          Alert.alert('Listo!', 'Revisa tu perfil, el evento ha sido añadido a tu agenda.')
         }
         if(!isCreator && isIn){
           await removeEventToAgenda(data.$id)
-          Alert.alert('Success', 'Revisa tu perfil, el evento se ha removido de tu agenda.')
+          Alert.alert('Listo!', 'Revisa tu perfil, el evento se ha removido de tu agenda.')
         }
         router.replace('/home');
       } catch (error) {

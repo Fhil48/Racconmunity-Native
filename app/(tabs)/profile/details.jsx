@@ -57,10 +57,10 @@ const Details = () => {
         if(isCreator){
           console.log('cancelando..');
           const resp = await changeStatusEvent(id, 'canceled');
-          Alert.alert('success', resp.message)
+          Alert.alert('Listo', resp.message)
         } else if(isParticipant && !isCreator){
           await removeEventToAgenda(data.$id)
-          Alert.alert('Success', 'El evento se ha removido de tu agenda.')
+          Alert.alert('Listo', 'El evento se ha removido de tu agenda.')
         }
         router.replace('profile/events');
       } catch (error) {
@@ -157,8 +157,12 @@ const Details = () => {
 
         {
           isParticipant && !isCreator && 
-          <View className="w-full justify-center items-center">
-            <CustomButton title="Cancelar participación" handlePress={()=>setIsModalVisible(true)} containerStyles="px-4"/>
+          <View className="w-full justify-between p-2 bg-black-100">
+            <Text className="text-md text-white font-psemibold">Opciones</Text>
+            <View className="w-full justify-between items-center flex-row gap-1">
+              <Text className="text-sm text-white font-pregular flex-1">Puedes cancelar tu participación.</Text>
+              <CustomButton title="Cancelar participación" handlePress={()=>setIsModalVisible(true)} containerStyles="min-h-[40px] px-4 py-2 rounded-sm bg-gray-600"  textStyles="text-sm text-gray-200"/>
+            </View>
           </View>
           }
           <Modal
@@ -185,7 +189,7 @@ const Details = () => {
                   <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 10 }}>Cancelar participación en {data?.title}</Text>
                   <Text style={{ textAlign: 'center' }}>El evento se removerá de tu agenda.</Text>
                   <View style={{ flexDirection: 'row', marginTop: 20, justifyContent:'space-around' }} className="w-full">
-                    <CustomButton title="Confirmar" isLoading={isLoading} handlePress={() => handleCancelar(data?.$id)} containerStyles="px-4 min-h-0" textStyles="text-sm"/>
+                    <CustomButton title="Confirmar" isLoading={isLoading} handlePress={() => handleCancelar(data?.$id)} containerStyles="px-4 min-h-0 bg-gray-800 rounded-sm" textStyles="text-sm text-gray-300"/>
                     <TouchableOpacity style={{ padding: 10, borderRadius: 5, marginRight: 10 }} onPress={ ()=> setIsModalVisible(false)}>
                       <Text style={{ color: '#1E1E2D', fontWeight: '400' }}>Cancelar</Text>
                     </TouchableOpacity>

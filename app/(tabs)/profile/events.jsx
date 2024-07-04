@@ -60,7 +60,7 @@ const Events = () => {
     try {
       setIsLoadingButton(true)
       const resp = await changeStatusEvent(id, 'canceled');
-      Alert.alert('success', resp.message)
+      Alert.alert('Listo', resp.message)
       router.replace('profile/events');
     } catch (error) {
       console.log(error.message)

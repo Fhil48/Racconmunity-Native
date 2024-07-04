@@ -165,7 +165,7 @@ const Calendar = () => {
                     </Text>
                     <Text className="text-[#FFF]">Lugar: {event.ubication} </Text>
                     <Text className="text-[#FFF]">Organiza: {event.create}</Text>
-                    <Text className="text-[#FFF] mt-2">Fecha:{event.date} {format(event.date, 'dd-MM-yyyy')} {format(event.date, 'HH:mm') } </Text>
+                    <Text className="text-[#FFF] mt-2">Fecha: {format(event.date, 'dd-MM-yyyy')} {format(event.date, 'HH:mm') } </Text>
                     <Text className="text-[#FFF] mt-2">Descripción:</Text>
                     <ReadMoreText
                       numberOfLines={2}

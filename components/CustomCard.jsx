@@ -57,7 +57,7 @@ export function CustomCard({ title, image, description, date, onPress, creator, 
         </ReadMoreText>
       </View>
       <View style={styles.cardFooter} className="flex-row gap-2">
-        {cancelar && <TouchableOpacity style={styles.button} className="w-full flex-1 bg-gray-800" onPress={onPressCancel}>
+        {cancelar && state === 'active' && <TouchableOpacity style={styles.button} className="w-full flex-1 bg-gray-800" onPress={onPressCancel}>
           <Text style={styles.buttonText} className="text-center text-gray-300">Cancelar evento</Text>
           </TouchableOpacity>}
           <TouchableOpacity style={styles.button} className="bg-orange-400 w-full flex-1" onPress={onPress}>
