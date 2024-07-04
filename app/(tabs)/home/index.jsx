@@ -15,10 +15,10 @@ import {
 
 import { images } from "../../../constants";
 import TicketButton from "../../../components/profile/TicketButton";
-import { getAllTickets } from "../../../lib/appwrite";
+import { getAllTickets, getNearestEvent } from "../../../lib/appwrite";
 import RecentEvent from "../../../components/recentEvent";
 import CreateButton from "../../../components/CreateButton";
-
+import { differenceInMinutes, differenceInSeconds, format, parseISO } from 'date-fns'
 // const events = [];
 const events = [
   {
@@ -46,23 +46,61 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
 
+  const [isLoadingEvent, setIsLoadingEvent] = useState(false)
+  const [dataEvent, setDataEvent] = useState([])
+  const [restTime, setRestTime] = useState('');
+
+  const getNearEvent = async () => {
+    const currentDateTime = new Date(); // Obtener fecha y hora actual
+    try {
+        setIsLoadingEvent(true);
+
+        // Obtener el evento más cercano
+        const resp = await getNearestEvent();
+        const dateTimeString = parseISO(resp?.date);
+
+        // Calcular el tiempo restante hasta el evento más cercano en días, horas, minutos y segundos
+        const secondsRemaining = differenceInSeconds(dateTimeString, currentDateTime);
+        const daysRemaining = Math.floor(secondsRemaining / (3600 * 24));
+        const hoursRemaining = Math.floor((secondsRemaining % (3600 * 24)) / 3600);
+        const minutesRemaining = Math.floor((secondsRemaining % 3600) / 60);
+        const seconds = secondsRemaining % 60;
+
+        setRestTime({
+            days: daysRemaining,
+            hours: hoursRemaining,
+            minutes: minutesRemaining,
+            seconds: seconds
+        });
+        setDataEvent(resp);
+    } catch (error) {
+        console.log(error.message);
+    } finally {
+        setIsLoadingEvent(false);
+    }
+};
+
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const resp = await getAllTickets();
+      setData(resp);
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const onRefresh = () => {
     setRefreshing(true);
+    fetchData();
+    getNearEvent()
     setRefreshing(false);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const resp = await getAllTickets();
-        setData(resp);
-      } catch (error) {
-        Alert.alert("Error", error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    getNearEvent()
     fetchData();
   }, []);
 
@@ -76,7 +114,7 @@ const Home = () => {
           onRefresh={onRefresh}
         />
         <View className="w-full mt-6">
-          <RecentEvent />
+          <RecentEvent getNearEvent={getNearEvent} isLoading={isLoadingEvent} setIsLoading={setIsLoadingEvent} restTime={restTime} setRestTime={setRestTime} data={dataEvent} setData={setDataEvent}/>
         </View>
         <FlatList
           data={data}

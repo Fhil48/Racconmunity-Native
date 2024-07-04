@@ -50,9 +50,12 @@ const FilterEvents = () => {
       <ScrollView>
         <View className="space-y-2">
           <Text className="text-xl text-white font-psemibold text-center">Eventos {type}</Text>
-          { data && data.length > 0 && data.map((event, index) => (
+          { data && data.length > 0 ? data.map((event, index) => (
             <CustomCard key={index} title={event.title} image={event.thumbnail} description={event.description} onPress={()=>router.push({ pathname:'home/details', params: { id: event.$id } })}/>
-          )) }
+          )) : <View className="space-y-2">
+                <Text className="text-sm text-white font-pregular text-center">Sin eventos registrados.</Text>
+              </View>
+          }
         </View>
       </ScrollView>
     </SafeAreaView>
