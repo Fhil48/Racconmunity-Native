@@ -84,14 +84,16 @@ const Details = () => {
           <Text className="text-xl text-white font-psemibold text-center">
             {data.title}
           </Text>
-          {(isCreator && data?.state === 'active') && <Text className="bg-orange-400 text-center w-full flex flex-row gap-2 pb-2">
-            <Text className="text-white mt-0 mr-2">Editar evento</Text>
-            <Image 
-              source={icons.edit} 
-              className='w-6 h-6 mr-2 mt-0 ml-2' 
-              resizeMode="contain"
-            />
-            </Text>}
+          {(isCreator && data?.state === 'active') &&
+            <Text className="bg-orange-400 text-center w-full flex flex-row gap-2 pb-2" onPress={()=> router.push({ pathname: "profile/editEvent", params: {'id': data?.$id} })}>
+              <Text className="text-white mt-0 mr-2">Editar evento</Text>
+              <Image 
+                source={icons.edit} 
+                className='w-6 h-6 mr-2 mt-0 ml-2' 
+                resizeMode="contain"
+              />
+              </Text>
+          }
           <Text className="text-md text-white font-psemibold text-center">Organizado por {data?.users?.username}</Text>
           <Text className="text-md text-white font-psemibold text-center">{data?.date && format(data?.date, 'dd-MM-yyyy')} {data?.date && format(data?.date, 'HH:mm')}</Text>
           <Text className="text-md text-white font-psemibold text-center">Lugar: {data?.ubication}</Text>

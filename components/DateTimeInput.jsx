@@ -1,23 +1,42 @@
-import React, { useState } from 'react';
-import { View, Button, Platform, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Platform, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CreateCustomButton from './CreateCustomButton';
+import { formatISO } from 'date-fns';
 
-export function DateTimeInput() {
-  const [date, setDate] = useState(new Date());
+export function DateTimeInput({ initialDate, setForm }) {
+  const [date, setDate] = useState(initialDate ? new Date(initialDate) : new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [text, setText] = useState('Selecciona fecha y hora');
+
+  useEffect(() => {
+    if (initialDate) {
+      setDate(new Date(initialDate));
+      updateText(new Date(initialDate));
+    }
+  }, [initialDate]);
+
+  const updateText = (currentDate) => {
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+    let fTime = tempDate.getHours() + ':' + (tempDate.getMinutes() < 10 ? '0' + tempDate.getMinutes() : tempDate.getMinutes());
+    setText(fDate + ' ' + fTime);
+  };
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    updateText(currentDate);
 
-    let tempDate = new Date(currentDate);
-    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
-    let fTime = tempDate.getHours() + ':' + tempDate.getMinutes();
-    setText(fDate + ' ' + fTime);
+    // Formatear la fecha en el formato requerido
+    const formattedDate = formatISO(currentDate);
+    // Actualizar la propiedad date en form
+    setForm((prevForm) => ({
+      ...prevForm,
+      date: formattedDate,
+    }));
   };
 
   const showMode = (currentMode) => {

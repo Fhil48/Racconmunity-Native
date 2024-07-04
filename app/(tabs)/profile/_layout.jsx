@@ -15,6 +15,7 @@ const ProfileLayout = () => {
         <Stack.Screen name="events" options={{ headerShown: false }} />
         <Stack.Screen name="details" options={{ headerShown: false }} />
         <Stack.Screen name="createEvent" options={{ headerShown: false }} />
+        <Stack.Screen name="editEvent" options={{ headerShown: false }} />
         <Stack.Screen name="tickets/[ticket]" options={{ headerShown: false }} />
       </Stack>
     </>
