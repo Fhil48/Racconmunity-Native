@@ -35,7 +35,7 @@ const Create = () => {
     communities: user.community,
     price: "",
     date: "",
-    location: "",
+    ubication: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
