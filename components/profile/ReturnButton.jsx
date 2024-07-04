@@ -1,10 +1,10 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { icons } from "../../constants";
 
-const ReturnButton = ({ title, handlePress }) => {
+const ReturnButton = ({ title, handlePress, classes }) => {
   return (
     <>
-        <View className="flex-row justify-between items-center">
+        <View className={`flex-row justify-between items-center ${classes}`}>
           <TouchableOpacity className="justify-start" onPress={handlePress}>
             <Image source={icons.leftArrow} className="" />
           </TouchableOpacity>

@@ -20,6 +20,8 @@ import pets from "../assets/icons/pets.png";
 import house from "../assets/icons/house.png";
 import food from "../assets/icons/food.png";
 import edit from "../assets/icons/edit.png";
+import pin from "../assets/icons/pin.png";
+
 export default {
   play,
   bookmark,
@@ -43,4 +45,5 @@ export default {
   food,
   calendar,
   edit,
+  pin,
 };

@@ -18,9 +18,8 @@ export function DateTimeInput({ initialDate, setForm }) {
   }, [initialDate]);
 
   const updateText = (currentDate) => {
-    let tempDate = new Date(currentDate);
-    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
-    let fTime = tempDate.getHours() + ':' + (tempDate.getMinutes() < 10 ? '0' + tempDate.getMinutes() : tempDate.getMinutes());
+    let fDate = currentDate.toLocaleDateString();
+    let fTime = currentDate.toLocaleTimeString();
     setText(fDate + ' ' + fTime);
   };
 
@@ -30,12 +29,13 @@ export function DateTimeInput({ initialDate, setForm }) {
     setDate(currentDate);
     updateText(currentDate);
 
-    // Formatear la fecha en el formato requerido
-    const formattedDate = formatISO(currentDate);
-    // Actualizar la propiedad date en form
+    // Convertir la fecha a formato ISO 8601 UTC antes de enviarla
+    const formattedDateUTC = formatISO(currentDate, { representation: 'complete' });
+  
+    // Actualizar la propiedad date en form con la fecha convertida a UTC
     setForm((prevForm) => ({
       ...prevForm,
-      date: formattedDate,
+      date: formattedDateUTC,
     }));
   };
 
@@ -46,13 +46,13 @@ export function DateTimeInput({ initialDate, setForm }) {
 
   return (
     <View>
-      <View className="mt-12">
+      <View style={{ marginTop: 12 }}>
         <CreateCustomButton textStyles='text-white' onPress={() => showMode('date')} title="Seleccionar fecha" />
       </View>
-      <View className="mt-2">
+      <View style={{ marginTop: 12 }}>
         <CreateCustomButton textStyles='text-white' onPress={() => showMode('time')} title="Seleccionar hora" />
       </View>
-      <Text className="text-sm" style={{ textAlign: 'center', marginTop: 20, color:'#FFF' }}>{text}</Text>
+      <Text style={{ textAlign: 'center', marginTop: 20, color: '#FFF' }}>{text}</Text>
       {show && (
         <DateTimePicker
           testID="dateTimePicker"

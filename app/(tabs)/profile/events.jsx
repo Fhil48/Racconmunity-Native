@@ -88,7 +88,7 @@ const Events = () => {
           handlePress={() => router.push("profile")}
         />
         <View className="flex-row gap-1 mt-2">
-          <View className='flex-1 pb-2'>
+          <View className='flex-1 pb-0'>
             <TouchableOpacity
             onPress={() => setValue('0')}
               activeOpacity={0.7}
@@ -99,24 +99,24 @@ const Events = () => {
               </TouchableOpacity>
             </View>
             <View style={{ flex: 1 }}>
-            <TouchableOpacity
-              onPress={() => setValue('1')}
-              activeOpacity={0.7}
-              className={`rounded-xl min-h-[62px] justify-center items-center border-2 bg-black-100 border-dotted ${value === '1' ? 'border-orange-500' : '' }`}
-              disabled={isLoading}
-            >
-              <Text className={`font-pregular text-sm text-white`}>Mi agenda</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setValue('1')}
+                activeOpacity={0.7}
+                className={`rounded-xl min-h-[62px] justify-center items-center border-2 bg-black-100 border-dotted ${value === '1' ? 'border-orange-500' : '' }`}
+                disabled={isLoading}
+              >
+                <Text className={`font-pregular text-sm text-white`}>Mi agenda</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        { value === '0' && <View className="mb-2 space-y-2">
+        { value === '0' && <View className="mb-1 space-y-2">
           <CreateCustomButton title="+" onPress={()=>router.push('profile/createEvent')} containerStyles="mt-7" textStyles="text-white"/>
         </View>}
         <ScrollView className="">
           <View className="space-y-2">
             { value === '0' && (data.length > 0 ? data.map(event => (
                   <View className="" key={event.title}>
-                    <CustomCard 
+                    <CustomCard
                       title={event.title} 
                       image={event.thumbnail} 
                       description={event.description} 
@@ -160,9 +160,9 @@ const Events = () => {
               <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 10 }}>Cancelar evento {seleItem?.title}</Text>
               <Text style={{ textAlign: 'center' }}>El evento se removerá de la agenda de los participantes.</Text>
               <View style={{ flexDirection: 'row', marginTop: 20, justifyContent:'space-around' }} className="w-full">
-                <CustomButton title="Confirmar" isLoading={isLoading} handlePress={() => handleCancelar(seleItem.$id)} containerStyles="px-4 min-h-0" textStyles="text-sm"/>
+                <CustomButton title="Confirmar" isLoading={isLoading} handlePress={() => handleCancelar(seleItem.$id)} containerStyles="px-4 min-h-0 bg-gray-800" textStyles="text-sm text-gray-300"/>
                 <TouchableOpacity style={{ padding: 10, borderRadius: 5, marginRight: 10 }} onPress={ ()=> setIsModalVisible(false)}>
-                  <Text style={{ color: '#1E1E2D', fontWeight: '400' }}>Cancelar</Text>
+                  <Text style={{ color: '#1E1E2D', fontWeight: '400' }}>Cerrar</Text>
                 </TouchableOpacity>
               </View>
             </View>
