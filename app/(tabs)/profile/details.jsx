@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { router, useLocalSearchParams } from 'expo-router'
 import Loader from '../../../components/Loader';
 import { useEffect } from 'react';
-import { addEventToAgenda, getCurrentUser, getEvent, removeEventToAgenda } from '../../../lib/appwrite';
+import { addEventToAgenda, changeStatusEvent, getCurrentUser, getEvent, removeEventToAgenda } from '../../../lib/appwrite';
 import { format } from 'date-fns';
 import CustomButton from '../../../components/CustomButton';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -55,6 +55,7 @@ const Details = () => {
       try {
         setIsLoadingButton(true)
         if(isCreator){
+          console.log('cancelando..');
           const resp = await changeStatusEvent(id, 'canceled');
           Alert.alert('success', resp.message)
         } else if(isParticipant && !isCreator){

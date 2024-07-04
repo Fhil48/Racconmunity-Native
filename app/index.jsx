@@ -11,6 +11,10 @@ const App = () => {
 
   if (!loading && isLogged) return <Redirect href="/home" />;
 
+  // if (!isLogged) {
+  //   return <Redirect href="/" />;
+  // }
+
   return (
     <SafeAreaView className="bg-primary  h-full">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
