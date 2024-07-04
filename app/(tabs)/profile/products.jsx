@@ -47,6 +47,7 @@ const Products = () => {
     await refetch();
     setRefreshing(false);
   };
+  console.log("data", data);
 
   return (
     <SafeAreaView className="bg-primary h-full px-4 items-center ">
