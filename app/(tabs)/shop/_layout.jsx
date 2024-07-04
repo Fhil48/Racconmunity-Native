@@ -6,7 +6,7 @@ const ShopLayout = () => {
     <>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="shop/item" options={{ headerShown: false }} />
+        <Stack.Screen name="item" options={{ headerShown: false }} />
       </Stack>
     </>
   );
