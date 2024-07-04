@@ -36,7 +36,11 @@ const Tickets = () => {
             data={tickets}
             keyExtractor={(item) => item.$id}
             renderItem={({ item }) => (
-              <TicketButton title={item.title} type="house" ticket={item.$id} />
+              <TicketButton
+                title={item.title}
+                type={item.state}
+                ticket={item.$id}
+              />
             )}
             ListEmptyComponent={() => (
               <EmptyState title="Aún no has creado Tickets" />

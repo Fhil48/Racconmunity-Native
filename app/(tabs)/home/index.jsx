@@ -18,7 +18,12 @@ import TicketButton from "../../../components/profile/TicketButton";
 import { getAllTickets, getNearestEvent } from "../../../lib/appwrite";
 import RecentEvent from "../../../components/recentEvent";
 import CreateButton from "../../../components/CreateButton";
-import { differenceInMinutes, differenceInSeconds, format, parseISO } from 'date-fns'
+import {
+  differenceInMinutes,
+  differenceInSeconds,
+  format,
+  parseISO,
+} from "date-fns";
 // const events = [];
 const events = [
   {
@@ -46,39 +51,44 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
 
-  const [isLoadingEvent, setIsLoadingEvent] = useState(false)
-  const [dataEvent, setDataEvent] = useState([])
-  const [restTime, setRestTime] = useState('');
+  const [isLoadingEvent, setIsLoadingEvent] = useState(false);
+  const [dataEvent, setDataEvent] = useState([]);
+  const [restTime, setRestTime] = useState("");
 
   const getNearEvent = async () => {
     const currentDateTime = new Date(); // Obtener fecha y hora actual
     try {
-        setIsLoadingEvent(true);
+      setIsLoadingEvent(true);
 
-        // Obtener el evento más cercano
-        const resp = await getNearestEvent();
-        const dateTimeString = parseISO(resp?.date);
+      // Obtener el evento más cercano
+      const resp = await getNearestEvent();
+      const dateTimeString = parseISO(resp?.date);
 
-        // Calcular el tiempo restante hasta el evento más cercano en días, horas, minutos y segundos
-        const secondsRemaining = differenceInSeconds(dateTimeString, currentDateTime);
-        const daysRemaining = Math.floor(secondsRemaining / (3600 * 24));
-        const hoursRemaining = Math.floor((secondsRemaining % (3600 * 24)) / 3600);
-        const minutesRemaining = Math.floor((secondsRemaining % 3600) / 60);
-        const seconds = secondsRemaining % 60;
+      // Calcular el tiempo restante hasta el evento más cercano en días, horas, minutos y segundos
+      const secondsRemaining = differenceInSeconds(
+        dateTimeString,
+        currentDateTime,
+      );
+      const daysRemaining = Math.floor(secondsRemaining / (3600 * 24));
+      const hoursRemaining = Math.floor(
+        (secondsRemaining % (3600 * 24)) / 3600,
+      );
+      const minutesRemaining = Math.floor((secondsRemaining % 3600) / 60);
+      const seconds = secondsRemaining % 60;
 
-        setRestTime({
-            days: daysRemaining,
-            hours: hoursRemaining,
-            minutes: minutesRemaining,
-            seconds: seconds
-        });
-        setDataEvent(resp);
+      setRestTime({
+        days: daysRemaining,
+        hours: hoursRemaining,
+        minutes: minutesRemaining,
+        seconds: seconds,
+      });
+      setDataEvent(resp);
     } catch (error) {
-        console.log(error.message);
+      console.log(error.message);
     } finally {
-        setIsLoadingEvent(false);
+      setIsLoadingEvent(false);
     }
-};
+  };
 
   const fetchData = async () => {
     try {
@@ -95,12 +105,12 @@ const Home = () => {
   const onRefresh = () => {
     setRefreshing(true);
     fetchData();
-    getNearEvent()
+    getNearEvent();
     setRefreshing(false);
   };
 
   useEffect(() => {
-    getNearEvent()
+    getNearEvent();
     fetchData();
   }, []);
 
@@ -114,7 +124,15 @@ const Home = () => {
           onRefresh={onRefresh}
         />
         <View className="w-full mt-6">
-          <RecentEvent getNearEvent={getNearEvent} isLoading={isLoadingEvent} setIsLoading={setIsLoadingEvent} restTime={restTime} setRestTime={setRestTime} data={dataEvent} setData={setDataEvent}/>
+          <RecentEvent
+            getNearEvent={getNearEvent}
+            isLoading={isLoadingEvent}
+            setIsLoading={setIsLoadingEvent}
+            restTime={restTime}
+            setRestTime={setRestTime}
+            data={dataEvent}
+            setData={setDataEvent}
+          />
         </View>
         <FlatList
           data={data}
@@ -140,7 +158,7 @@ const Home = () => {
                     <TicketButton
                       key={item.title}
                       title={item.title}
-                      type="pets"
+                      type={item.state}
                       ticket={item.$id}
                     />
                   ))}
