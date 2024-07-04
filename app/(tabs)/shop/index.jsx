@@ -16,7 +16,6 @@ import useAppwrite from "../../../lib/useAppwrite";
 import { EmptyState } from "../../../components";
 
 const ShopItem = ({ item }) => {
-  const pathname = usePathname();
   return (
     <TouchableOpacity
       onPress={() =>

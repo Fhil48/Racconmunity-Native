@@ -103,7 +103,7 @@ const Home = () => {
                       key={item.title}
                       title={item.title}
                       type="pets"
-                      ticket="walk"
+                      ticket={item.$id}
                     />
                   ))}
               </View>
