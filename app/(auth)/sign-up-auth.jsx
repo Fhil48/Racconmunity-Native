@@ -70,6 +70,7 @@ const Signup = () => {
             value={form?.pass}
             handleChangeText={(e) => setForm((prev) => ({ ...prev, pass: e }))}
             otherStyles="mt-7"
+            type="password"
             keyboardType="password"
           />
           <CustomButton
