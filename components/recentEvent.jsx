@@ -11,7 +11,7 @@ const RecentEvent = ({ getNearEvent, isLoading, setIsLoading, data, setData, res
 
   return (
     <TouchableOpacity className="bg-blue-500 rounded-lg p-2 flex items-center justify-between flex-row" onPress={()=> router.push({ pathname:'home/details', params: { id: data.$id } })}>
-        <View>
+        <View className="flex-1">
             <Text className="text-white font-pmedium">Próximo evento</Text>
             <Text className="text-white font-pmedium">{data.title}</Text>
             <Text className="text-white font-pregular">{restTime && `${restTime.days} dias, ${restTime.hours} horas, ${restTime.minutes} minutos`}</Text>

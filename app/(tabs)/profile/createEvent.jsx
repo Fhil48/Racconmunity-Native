@@ -46,7 +46,7 @@ const CreateEvent = () => {
       setIsLoading(true);
       console.log(form);
       await createEvent(form);
-      Alert.alert("Success", 'Evento creado con éxito.');
+      Alert.alert("Evento creado con éxito.", 'Revisa tu perfil, sección de eventos.');
       router.push("/profile");
     } catch (error) {
       Alert.alert("Error", error.message);

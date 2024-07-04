@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import ReadMoreText from 'react-native-read-more-text';
 
 export function CustomCard({ title, image, description, date, onPress, creator, cancelar, onPressCancel, state }) {
+  const renderTruncatedFooter = (handlePress) => {
+    return (
+      <Text className="mt-2 text-secondary-200" onPress={handlePress}>
+        Leer más
+      </Text>
+    );
+  };
+
+  const renderRevealedFooter = (handlePress) => {
+    return (
+      <Text className="mt-2 text-secondary-200" onPress={handlePress}>
+        Leer menos
+      </Text>
+    );
+  };
+
   return (
-    <View style={styles.card}>
+    <View style={styles.card} className="relative">
       <View style={styles.cardHeader} className="relative">
         <Image
           source={{ uri: image }}
@@ -29,21 +45,27 @@ export function CustomCard({ title, image, description, date, onPress, creator, 
           </Text>
         }
       </View>
-      <View style={styles.cardBody}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Text style={styles.cardText}>
-            <Text className="text-ellipsis">{description}</Text>
-        </Text>
+      <View style={styles.cardBody} className="relative">
+        <Text style={styles.cardTitle} className="text-gray-800">{title}</Text>
+        <ReadMoreText
+          numberOfLines={3}
+          renderTruncatedFooter={renderTruncatedFooter}
+          renderRevealedFooter={renderRevealedFooter}
+          textStyle={{ color: '#FFF' }}
+        >
+          <Text className="text-black-200">{description}</Text>
+        </ReadMoreText>
       </View>
       <View style={styles.cardFooter} className="flex-row gap-2">
-        {cancelar && <TouchableOpacity style={styles.button} className="bg-red-800 w-full flex-1" onPress={onPressCancel}>
-          <Text style={styles.buttonText} className="text-center">Cancelar evento</Text>
-        </TouchableOpacity>}
-        <TouchableOpacity style={styles.button} className="bg-orange-400 w-full flex-1" onPress={onPress}>
-          <Text style={styles.buttonText} className="text-center">Ver más</Text>
-        </TouchableOpacity>
+        {cancelar && <TouchableOpacity style={styles.button} className="w-full flex-1 bg-gray-800" onPress={onPressCancel}>
+          <Text style={styles.buttonText} className="text-center text-gray-300">Cancelar evento</Text>
+          </TouchableOpacity>}
+          <TouchableOpacity style={styles.button} className="bg-orange-400 w-full flex-1" onPress={onPress}>
+          <Text style={styles.buttonText} className="text-center text-white">Ver más</Text>
+        </TouchableOpacity> 
       </View>
     </View>
+
   );
 }
 
@@ -68,11 +90,10 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   cardBody: {
-    padding: 16,
+    padding: 10,
   },
   cardTitle: {
     fontSize: 20,
-    color: '#607d8b',
     marginBottom: 8,
     fontWeight: '600',
   },
@@ -92,7 +113,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   buttonText: {
-    color: '#fff',
     fontSize: 16,
   },
 });

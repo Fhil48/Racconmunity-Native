@@ -96,6 +96,7 @@ const SignUp = () => {
             handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
             type="password"
+            keboardType="password"
           />
           <FormDropdown
             title="Rol"

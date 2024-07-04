@@ -56,22 +56,22 @@ const Home = () => {
   const [restTime, setRestTime] = useState("");
 
   const getNearEvent = async () => {
-    const currentDateTime = new Date(); // Obtener fecha y hora actual
+    const currentDateTime = new Date();
     try {
       setIsLoadingEvent(true);
 
-      // Obtener el evento más cercano
       const resp = await getNearestEvent();
+      console.log("evento más cercano:", resp);
       const dateTimeString = parseISO(resp?.date);
 
       // Calcular el tiempo restante hasta el evento más cercano en días, horas, minutos y segundos
       const secondsRemaining = differenceInSeconds(
         dateTimeString,
-        currentDateTime,
+        currentDateTime
       );
       const daysRemaining = Math.floor(secondsRemaining / (3600 * 24));
       const hoursRemaining = Math.floor(
-        (secondsRemaining % (3600 * 24)) / 3600,
+        (secondsRemaining % (3600 * 24)) / 3600
       );
       const minutesRemaining = Math.floor((secondsRemaining % 3600) / 60);
       const seconds = secondsRemaining % 60;

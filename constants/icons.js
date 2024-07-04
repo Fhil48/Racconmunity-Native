@@ -23,6 +23,8 @@ import edit from "../assets/icons/edit.png";
 import finished from "../assets/icons/finished.png";
 import active from "../assets/icons/active.png";
 import cancelled from "../assets/icons/cancelled.png";
+import pin from "../assets/icons/pin.png";
+
 export default {
   play,
   bookmark,
@@ -49,4 +51,5 @@ export default {
   finished,
   active,
   cancelled,
+  pin,
 };

@@ -50,6 +50,7 @@ const SignIn = () => {
           />
           <FormField
             title="Contraseña"
+            type="password"
             placeholder="*****"
             handleChangeText={(e)=> setForm(prev => ({...prev, pass: e}))}
             otherStyles="mt-7"
