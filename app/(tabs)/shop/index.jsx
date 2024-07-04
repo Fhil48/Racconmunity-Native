@@ -1,19 +1,17 @@
 import {
-  Alert,
   FlatList,
   Image,
   RefreshControl,
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { router, usePathname } from "expo-router";
+import { router } from "expo-router";
 import { getAllProducts } from "../../../lib/appwrite";
 import useAppwrite from "../../../lib/useAppwrite";
-import { EmptyState } from "../../../components";
+import { EmptyState, Loader } from "../../../components";
 
 const ShopItem = ({ item }) => {
   return (
@@ -37,7 +35,7 @@ const ShopItem = ({ item }) => {
 };
 
 const shop = () => {
-  const { data, refetch } = useAppwrite(getAllProducts);
+  const { data, loading, refetch } = useAppwrite(getAllProducts);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
@@ -46,6 +44,14 @@ const shop = () => {
     setRefreshing(false);
   };
 
+  if (loading)
+    return (
+      <SafeAreaView className="bg-primary h-full px-4 py-12 ">
+        <View className="space-y-2">
+          <Loader isLoading={loading} />
+        </View>
+      </SafeAreaView>
+    );
   return (
     <SafeAreaView className="bg-primary h-full px-4 ">
       <Text className="text-white text-2xl font-pbold my-4">Tienda</Text>

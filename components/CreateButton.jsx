@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { router, usePathname } from "expo-router";
-import { icons, images } from "../constants";
+import { icons } from "../constants";
 const CreateButton = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
