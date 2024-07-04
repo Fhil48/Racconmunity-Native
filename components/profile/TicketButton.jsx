@@ -15,6 +15,7 @@ const colorBackground = {
 };
 
 const TicketButton = ({ title, type, isLoading, ticket }) => {
+  const path = usePathname();
   return (
     <TouchableOpacity
       onPress={() => {
