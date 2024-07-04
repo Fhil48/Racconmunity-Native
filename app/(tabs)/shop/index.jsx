@@ -16,12 +16,11 @@ import useAppwrite from "../../../lib/useAppwrite";
 import { EmptyState } from "../../../components";
 
 const ShopItem = ({ item }) => {
-  const pathname = usePathname();
   return (
     <TouchableOpacity
-      onPress={() => {
-        router.push("shop/item");
-      }}
+      onPress={() =>
+        router.push({ pathname: "shop/item", params: { productId: item.$id } })
+      }
       className="w-1/2 h-50 border-2 p-2 border-white rounded-lg "
     >
       <Image

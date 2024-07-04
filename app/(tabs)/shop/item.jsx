@@ -1,12 +1,29 @@
 import { Image, ScrollView, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ReturnButton from "../../../components/profile/ReturnButton";
 import { CustomButton } from "../../../components";
+import { getProduct } from "../../../lib/appwrite";
 
 const Item = () => {
-  const { product } = useLocalSearchParams();
+  const { productId } = useLocalSearchParams();
+  const [product, setProduct] = useState({});
+
+  const getProducto = async () => {
+    try {
+      const resp = await getProduct(productId);
+      console.log("product: ", resp);
+      setProduct(resp);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    getProducto();
+  }, []);
 
   return (
     <SafeAreaView className="bg-primary h-full">

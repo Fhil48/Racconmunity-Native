@@ -1,25 +1,48 @@
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import { FlatList, View } from "react-native";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import { icons } from "../../../constants";
 import ReturnButton from "../../../components/profile/ReturnButton";
 import TicketButton from "../../../components/profile/TicketButton";
+import { getAllTickets } from "../../../lib/appwrite";
+import { EmptyState } from "../../../components";
 
 const Tickets = () => {
+  const [tickets, setTickets] = useState({});
+
+  const searchTickets = async () => {
+    try {
+      const resp = await getAllTickets();
+      console.log("product: ", resp);
+      setTickets(resp);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    searchTickets();
+  }, []);
+
   return (
-    <SafeAreaView className="bg-primary h-full ">
-      <ScrollView className="px-4 my-6 ">
-        <ReturnButton
-          title="Mis tickets"
-          handlePress={() => router.push("/profile")}
+    <SafeAreaView className="bg-primary h-full px-4 my-6 ">
+      <ReturnButton
+        title="Mis tickets"
+        handlePress={() => router.push("/profile")}
+      />
+      <View className=" space-y-2">
+        <FlatList
+          data={tickets}
+          keyExtractor={(item) => item.$id}
+          renderItem={({ item }) => (
+            <TicketButton title={item.title} type="house" ticket={item.$id} />
+          )}
+          ListEmptyComponent={() => (
+            <EmptyState title="Aún no has creado Tickets" />
+          )}
         />
-        <View className=" space-y-2">
-          <TicketButton title="Paseo de mascotas" type="pets" ticket="walk" />
-          <TicketButton title="Filtración de agua" type="house" />
-          <TicketButton title="Almuerzos caseros" type="food" />
-        </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

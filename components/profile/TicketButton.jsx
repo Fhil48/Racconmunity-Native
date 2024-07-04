@@ -15,13 +15,13 @@ const colorBackground = {
 };
 
 const TicketButton = ({ title, type, isLoading, ticket }) => {
-  const pathname = usePathname();
-
   return (
     <TouchableOpacity
       onPress={() => {
-        if (pathname.startsWith("/tickets")) router.setParams({ ticket });
-        else router.push(`profile/tickets/${ticket}`);
+        router.push({
+          pathname: "profile/tickets/ticket",
+          params: { ticketId: ticket },
+        });
       }}
       activeOpacity={0.7}
       className={`${
