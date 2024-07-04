@@ -9,13 +9,13 @@ import {
 import { icons } from "../../constants";
 
 const colorBackground = {
-  pets: "bg-[#21bc00]",
-  house: "bg-[#4e41dc]",
-  food: "bg-[#eb643a]",
+  active: "bg-[#21bc00]",
+  finished: "bg-[#4e41dc]",
+  cancelled: "bg-[#eb643a]",
 };
 
 const TicketButton = ({ title, type, isLoading, ticket }) => {
-  const path = usePathname();
+  console.log("type: ", type);
   return (
     <TouchableOpacity
       onPress={() => {
